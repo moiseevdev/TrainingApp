@@ -34,6 +34,12 @@
 		E9BB3771276B6E76001CA59A /* CharityEventViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9BB376F276B6E76001CA59A /* CharityEventViewController.xib */; };
 		E9BB3775276B6EA0001CA59A /* EventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BB3773276B6EA0001CA59A /* EventDetailsViewController.swift */; };
 		E9BB3776276B6EA0001CA59A /* EventDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9BB3774276B6EA0001CA59A /* EventDetailsViewController.xib */; };
+		E9BB377B276B70AF001CA59A /* TraineeApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E9BB3778276B70AF001CA59A /* TraineeApp.xcdatamodeld */; };
+		E9BB3781276B70CA001CA59A /* CDEvents+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BB377D276B70CA001CA59A /* CDEvents+CoreDataProperties.swift */; };
+		E9BB3782276B70CA001CA59A /* CDCategories+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BB377E276B70CA001CA59A /* CDCategories+CoreDataClass.swift */; };
+		E9BB3783276B70CA001CA59A /* CDEvents+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BB377F276B70CA001CA59A /* CDEvents+CoreDataClass.swift */; };
+		E9BB3784276B70CA001CA59A /* CDCategories+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BB3780276B70CA001CA59A /* CDCategories+CoreDataProperties.swift */; };
+		E9BB3786276B70FC001CA59A /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BB3785276B70FC001CA59A /* CoreDataStack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +74,12 @@
 		E9BB376F276B6E76001CA59A /* CharityEventViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CharityEventViewController.xib; sourceTree = "<group>"; };
 		E9BB3773276B6EA0001CA59A /* EventDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailsViewController.swift; sourceTree = "<group>"; };
 		E9BB3774276B6EA0001CA59A /* EventDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventDetailsViewController.xib; sourceTree = "<group>"; };
+		E9BB3779276B70AF001CA59A /* TraineeApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TraineeApp.xcdatamodel; sourceTree = "<group>"; };
+		E9BB377D276B70CA001CA59A /* CDEvents+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CDEvents+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E9BB377E276B70CA001CA59A /* CDCategories+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CDCategories+CoreDataClass.swift"; sourceTree = "<group>"; };
+		E9BB377F276B70CA001CA59A /* CDEvents+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CDEvents+CoreDataClass.swift"; sourceTree = "<group>"; };
+		E9BB3780276B70CA001CA59A /* CDCategories+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CDCategories+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E9BB3785276B70FC001CA59A /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -260,6 +272,8 @@
 		E9BB3761276B6C17001CA59A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E9BB377C276B70BD001CA59A /* CoreDataModels */,
+				E9BB3778276B70AF001CA59A /* TraineeApp.xcdatamodeld */,
 				E9BB3763276B6C38001CA59A /* CategoriesData.swift */,
 				E9BB3762276B6C38001CA59A /* EventsData.swift */,
 			);
@@ -287,6 +301,7 @@
 		E9BB3768276B6D86001CA59A /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				E9BB3785276B70FC001CA59A /* CoreDataStack.swift */,
 				E9BB3769276B6D99001CA59A /* DataFromFile.swift */,
 				E9BB376A276B6D99001CA59A /* ReadJSONFromFile.swift */,
 			);
@@ -309,6 +324,17 @@
 				E9BB3774276B6EA0001CA59A /* EventDetailsViewController.xib */,
 			);
 			path = EventDetails;
+			sourceTree = "<group>";
+		};
+		E9BB377C276B70BD001CA59A /* CoreDataModels */ = {
+			isa = PBXGroup;
+			children = (
+				E9BB377E276B70CA001CA59A /* CDCategories+CoreDataClass.swift */,
+				E9BB3780276B70CA001CA59A /* CDCategories+CoreDataProperties.swift */,
+				E9BB377F276B70CA001CA59A /* CDEvents+CoreDataClass.swift */,
+				E9BB377D276B70CA001CA59A /* CDEvents+CoreDataProperties.swift */,
+			);
+			path = CoreDataModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -441,12 +467,18 @@
 				E9BB374F276B5598001CA59A /* CustomColors.swift in Sources */,
 				E9BB373B276B5451001CA59A /* TabBarController.swift in Sources */,
 				E9BB3757276B5697001CA59A /* CategoriesCell.swift in Sources */,
+				E9BB3784276B70CA001CA59A /* CDCategories+CoreDataProperties.swift in Sources */,
 				E9BB371D276B3AD1001CA59A /* AppDelegate.swift in Sources */,
 				E9BB3765276B6C38001CA59A /* CategoriesData.swift in Sources */,
 				E9BB3764276B6C38001CA59A /* EventsData.swift in Sources */,
+				E9BB3783276B70CA001CA59A /* CDEvents+CoreDataClass.swift in Sources */,
 				E9BB374A276B557A001CA59A /* CustomFonts.swift in Sources */,
+				E9BB377B276B70AF001CA59A /* TraineeApp.xcdatamodeld in Sources */,
+				E9BB3782276B70CA001CA59A /* CDCategories+CoreDataClass.swift in Sources */,
 				E9BB3770276B6E76001CA59A /* CharityEventViewController.swift in Sources */,
+				E9BB3786276B70FC001CA59A /* CoreDataStack.swift in Sources */,
 				E9BB3740276B54A0001CA59A /* CategoriesViewController.swift in Sources */,
+				E9BB3781276B70CA001CA59A /* CDEvents+CoreDataProperties.swift in Sources */,
 				E9BB376B276B6D99001CA59A /* DataFromFile.swift in Sources */,
 				E9BB371F276B3AD1001CA59A /* SceneDelegate.swift in Sources */,
 			);
@@ -655,6 +687,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		E9BB3778276B70AF001CA59A /* TraineeApp.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E9BB3779276B70AF001CA59A /* TraineeApp.xcdatamodel */,
+			);
+			currentVersion = E9BB3779276B70AF001CA59A /* TraineeApp.xcdatamodel */;
+			path = TraineeApp.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = E9BB3711276B3AD1001CA59A /* Project object */;
 }
