@@ -133,7 +133,6 @@ extension CharityEventViewController: UICollectionViewDataSource, UICollectionVi
         let eventDetailsVC = EventDetailsViewController()
         eventDetailsVC.eventId = Int(eventID)
         self.navigationController?.pushViewController(eventDetailsVC, animated: true)
-        print("eventID \(eventID)")
     }
     
 }

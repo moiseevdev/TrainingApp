@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19461" systemVersion="21A559" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CDCategories" representedClassName="CDCategories" syncable="YES">
+        <attribute name="categoryID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="categoryName" optional="YES" attributeType="String"/>
+        <attribute name="image" optional="YES" attributeType="String"/>
+        <relationship name="categories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDEvents" inverseName="categories" inverseEntity="CDEvents"/>
+    </entity>
+    <entity name="CDEvents" representedClassName="CDEvents" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String"/>
+        <attribute name="description1" optional="YES" attributeType="String"/>
+        <attribute name="description2" optional="YES" attributeType="String"/>
+        <attribute name="descriptionEvent" optional="YES" attributeType="String"/>
+        <attribute name="email" optional="YES" attributeType="String"/>
+        <attribute name="eventId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="eventName" optional="YES" attributeType="String"/>
+        <attribute name="image" optional="YES" attributeType="String"/>
+        <attribute name="image1" optional="YES" attributeType="String"/>
+        <attribute name="image2" optional="YES" attributeType="String"/>
+        <attribute name="image3" optional="YES" attributeType="String"/>
+        <attribute name="number" optional="YES" attributeType="String"/>
+        <attribute name="timeLeft" optional="YES" attributeType="String"/>
+        <attribute name="website" optional="YES" attributeType="String"/>
+        <relationship name="categories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDCategories" inverseName="categories" inverseEntity="CDCategories"/>
+    </entity>
+    <elements>
+        <element name="CDCategories" positionX="-684.8668212890625" positionY="62.07382202148438" width="128" height="103"/>
+        <element name="CDEvents" positionX="-434.353271484375" positionY="78.01483154296875" width="128" height="268"/>
+    </elements>
+</model>

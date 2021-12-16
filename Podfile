@@ -7,5 +7,6 @@ target 'TrainingApp' do
 
   # Pods for TrainingApp
   pod 'Alamofire'
+  pod 'RealmSwift'
 
 end
