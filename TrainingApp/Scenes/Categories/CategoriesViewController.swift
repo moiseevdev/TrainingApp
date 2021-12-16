@@ -9,9 +9,7 @@ import UIKit
 
 final class CategoriesViewController: UIViewController {
     
-    //private var dataBase = DataBaseAdapter.dataBase
-    
-    private var categories: Array<Int> = []
+    private var dataBase = DataBaseAdapter.dataBase
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var categoriesCollectionView: UICollectionView!
@@ -55,7 +53,7 @@ final class CategoriesViewController: UIViewController {
     }
 
     private func saveCategories() {
-//        self.dataBase.saveCategories()
+        self.dataBase.saveCategories()
         self.categoriesCollectionView.reloadData()
     }
     
@@ -74,14 +72,14 @@ final class CategoriesViewController: UIViewController {
 
 extension CategoriesViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return categories.count
+        return dataBase.categories.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoriesCell", for: indexPath) as? CategoriesCell {
-            let categories = self.categories[indexPath.item]
-//            cell.nameLabel.text = categories.categoryName
-//            cell.categoryImage.image = UIImage(named: categories.image ?? "test")
+            let categories = self.dataBase.categories[indexPath.item]
+            cell.nameLabel.text = categories.categoryName
+            cell.categoryImage.image = UIImage(named: categories.image ?? "test")
             cell.backgroundColor = CustomColors.lightGrey2
             return cell
         }
@@ -108,11 +106,11 @@ extension CategoriesViewController: UICollectionViewDataSource, UICollectionView
         return sectionInserts.left
     }
     
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let categories = self.dataBase.categories[indexPath.item]
-//        let categoryID = categories.categoryID
-//        let categoryVC = CharityEventViewController()
-//        categoryVC.categoryId = Int(categoryID)
-//        self.navigationController?.pushViewController(categoryVC, animated: true)
-//    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let categories = self.dataBase.categories[indexPath.item]
+        let categoryID = categories.categoryID
+        let categoryVC = CharityEventViewController()
+        categoryVC.categoryId = Int(categoryID)
+        self.navigationController?.pushViewController(categoryVC, animated: true)
+    }
 }

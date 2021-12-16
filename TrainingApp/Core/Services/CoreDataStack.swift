@@ -17,7 +17,7 @@ class CoreDataStack {
     
     
     lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "TraineeApp")
+        let container = NSPersistentContainer(name: "TrainingApp")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
@@ -81,7 +81,6 @@ class CoreDataStack {
             }
             else {
                 self.categories = try context.fetch(fetchRequest)
-                
             }
             if context.hasChanges {
                 try? context.save()
@@ -115,7 +114,6 @@ class CoreDataStack {
                         try? context.save()
                     }
                 }
-                
                 self.events = try context.fetch(fetchRequest)
             }
             else {
@@ -127,18 +125,5 @@ class CoreDataStack {
             }
         } catch {}
     }
-    
-}
-
-public extension NSManagedObject {
-
-    convenience init(context: NSManagedObjectContext) {
-        let name = String(describing: type(of: self))
-        let entity = NSEntityDescription.entity(forEntityName: name, in: context)!
-        self.init(entity: entity, insertInto: context)
-    }
 
 }
-
-
-

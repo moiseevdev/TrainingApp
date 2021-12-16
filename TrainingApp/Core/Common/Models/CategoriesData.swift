@@ -6,16 +6,14 @@
 //
 
 import Foundation
+import RealmSwift
 
 struct CategoriesData: Codable {
     let categories: [Categor]
 }
 
-struct Categor: Codable {
-    let categoryID: Int
-    let categoryName: String
-    let image: String
+class Categor: Object, Codable {
+    @Persisted var categoryID: Int
+    @Persisted var categoryName: String
+    @Persisted var image: String
 }
-
-
-

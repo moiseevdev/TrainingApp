@@ -34,12 +34,19 @@
 		E9BB3771276B6E76001CA59A /* CharityEventViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9BB376F276B6E76001CA59A /* CharityEventViewController.xib */; };
 		E9BB3775276B6EA0001CA59A /* EventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BB3773276B6EA0001CA59A /* EventDetailsViewController.swift */; };
 		E9BB3776276B6EA0001CA59A /* EventDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9BB3774276B6EA0001CA59A /* EventDetailsViewController.xib */; };
-		E9BB377B276B70AF001CA59A /* TraineeApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E9BB3778276B70AF001CA59A /* TraineeApp.xcdatamodeld */; };
+		E9BB377B276B70AF001CA59A /* TrainingApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E9BB3778276B70AF001CA59A /* TrainingApp.xcdatamodeld */; };
 		E9BB3781276B70CA001CA59A /* CDEvents+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BB377D276B70CA001CA59A /* CDEvents+CoreDataProperties.swift */; };
 		E9BB3782276B70CA001CA59A /* CDCategories+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BB377E276B70CA001CA59A /* CDCategories+CoreDataClass.swift */; };
 		E9BB3783276B70CA001CA59A /* CDEvents+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BB377F276B70CA001CA59A /* CDEvents+CoreDataClass.swift */; };
 		E9BB3784276B70CA001CA59A /* CDCategories+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BB3780276B70CA001CA59A /* CDCategories+CoreDataProperties.swift */; };
 		E9BB3786276B70FC001CA59A /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BB3785276B70FC001CA59A /* CoreDataStack.swift */; };
+		E9BB3788276B71F6001CA59A /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BB3787276B71F6001CA59A /* RealmManager.swift */; };
+		E9BB378F276B72A2001CA59A /* CoreDataAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BB378C276B72A2001CA59A /* CoreDataAdapter.swift */; };
+		E9BB3790276B72A2001CA59A /* DataBaseAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BB378D276B72A2001CA59A /* DataBaseAdapter.swift */; };
+		E9BB3791276B72A2001CA59A /* RealmAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BB378E276B72A2001CA59A /* RealmAdapter.swift */; };
+		E9BB3795276B7314001CA59A /* CharityEventViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BB3793276B7314001CA59A /* CharityEventViewCell.swift */; };
+		E9BB3796276B7314001CA59A /* CharityEventViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9BB3794276B7314001CA59A /* CharityEventViewCell.xib */; };
+		E9BB3799276B7837001CA59A /* NSManagedObjectExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BB3798276B7837001CA59A /* NSManagedObjectExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +87,13 @@
 		E9BB377F276B70CA001CA59A /* CDEvents+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CDEvents+CoreDataClass.swift"; sourceTree = "<group>"; };
 		E9BB3780276B70CA001CA59A /* CDCategories+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CDCategories+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		E9BB3785276B70FC001CA59A /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		E9BB3787276B71F6001CA59A /* RealmManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		E9BB378C276B72A2001CA59A /* CoreDataAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataAdapter.swift; sourceTree = "<group>"; };
+		E9BB378D276B72A2001CA59A /* DataBaseAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataBaseAdapter.swift; sourceTree = "<group>"; };
+		E9BB378E276B72A2001CA59A /* RealmAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmAdapter.swift; sourceTree = "<group>"; };
+		E9BB3793276B7314001CA59A /* CharityEventViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharityEventViewCell.swift; sourceTree = "<group>"; };
+		E9BB3794276B7314001CA59A /* CharityEventViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CharityEventViewCell.xib; sourceTree = "<group>"; };
+		E9BB3798276B7837001CA59A /* NSManagedObjectExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSManagedObjectExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,8 +179,8 @@
 			children = (
 				E9BB3738276B543A001CA59A /* TabBar */,
 				E9BB373D276B547D001CA59A /* Categories */,
-				E9BB3772276B6E7B001CA59A /* EventDetails */,
 				E9BB376D276B6E64001CA59A /* CharityEvent */,
+				E9BB3772276B6E7B001CA59A /* EventDetails */,
 				E9BB3742276B5505001CA59A /* TestViewController */,
 			);
 			path = Scenes;
@@ -247,6 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				E9BB3754276B566D001CA59A /* CategoriesCell */,
+				E9BB3792276B7308001CA59A /* CharityEventViewCell */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -273,7 +288,7 @@
 			isa = PBXGroup;
 			children = (
 				E9BB377C276B70BD001CA59A /* CoreDataModels */,
-				E9BB3778276B70AF001CA59A /* TraineeApp.xcdatamodeld */,
+				E9BB3778276B70AF001CA59A /* TrainingApp.xcdatamodeld */,
 				E9BB3763276B6C38001CA59A /* CategoriesData.swift */,
 				E9BB3762276B6C38001CA59A /* EventsData.swift */,
 			);
@@ -283,7 +298,7 @@
 		E9BB3766276B6D4A001CA59A /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				E9BB3767276B6D79001CA59A /* New Group */,
+				E9BB3797276B781E001CA59A /* Extensions */,
 				E9BB3761276B6C17001CA59A /* Models */,
 				E9BB3750276B5627001CA59A /* CustomViews */,
 				E9BB3753276B5664001CA59A /* Cells */,
@@ -291,19 +306,14 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
-		E9BB3767276B6D79001CA59A /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
-			sourceTree = "<group>";
-		};
 		E9BB3768276B6D86001CA59A /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				E9BB378B276B7295001CA59A /* DataBaseAdapter */,
 				E9BB3785276B70FC001CA59A /* CoreDataStack.swift */,
 				E9BB3769276B6D99001CA59A /* DataFromFile.swift */,
 				E9BB376A276B6D99001CA59A /* ReadJSONFromFile.swift */,
+				E9BB3787276B71F6001CA59A /* RealmManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -335,6 +345,33 @@
 				E9BB377D276B70CA001CA59A /* CDEvents+CoreDataProperties.swift */,
 			);
 			path = CoreDataModels;
+			sourceTree = "<group>";
+		};
+		E9BB378B276B7295001CA59A /* DataBaseAdapter */ = {
+			isa = PBXGroup;
+			children = (
+				E9BB378D276B72A2001CA59A /* DataBaseAdapter.swift */,
+				E9BB378C276B72A2001CA59A /* CoreDataAdapter.swift */,
+				E9BB378E276B72A2001CA59A /* RealmAdapter.swift */,
+			);
+			path = DataBaseAdapter;
+			sourceTree = "<group>";
+		};
+		E9BB3792276B7308001CA59A /* CharityEventViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				E9BB3793276B7314001CA59A /* CharityEventViewCell.swift */,
+				E9BB3794276B7314001CA59A /* CharityEventViewCell.xib */,
+			);
+			path = CharityEventViewCell;
+			sourceTree = "<group>";
+		};
+		E9BB3797276B781E001CA59A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E9BB3798276B7837001CA59A /* NSManagedObjectExtensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -401,6 +438,7 @@
 				E9BB3760276B6AAC001CA59A /* events.json in Resources */,
 				E9BB375F276B6AAC001CA59A /* categories.json in Resources */,
 				E9BB3735276B5023001CA59A /* LaunchScreen.storyboard in Resources */,
+				E9BB3796276B7314001CA59A /* CharityEventViewCell.xib in Resources */,
 				E9BB374B276B557A001CA59A /* Officinasansextraboldscc.otf in Resources */,
 				E9BB3726276B3AD6001CA59A /* Assets.xcassets in Resources */,
 				E9BB3741276B54A0001CA59A /* CategoriesViewController.xib in Resources */,
@@ -464,20 +502,26 @@
 				E9BB3744276B551B001CA59A /* TestViewController.swift in Sources */,
 				E9BB376C276B6D99001CA59A /* ReadJSONFromFile.swift in Sources */,
 				E9BB3775276B6EA0001CA59A /* EventDetailsViewController.swift in Sources */,
+				E9BB3788276B71F6001CA59A /* RealmManager.swift in Sources */,
+				E9BB3799276B7837001CA59A /* NSManagedObjectExtensions.swift in Sources */,
 				E9BB374F276B5598001CA59A /* CustomColors.swift in Sources */,
 				E9BB373B276B5451001CA59A /* TabBarController.swift in Sources */,
+				E9BB3790276B72A2001CA59A /* DataBaseAdapter.swift in Sources */,
 				E9BB3757276B5697001CA59A /* CategoriesCell.swift in Sources */,
 				E9BB3784276B70CA001CA59A /* CDCategories+CoreDataProperties.swift in Sources */,
 				E9BB371D276B3AD1001CA59A /* AppDelegate.swift in Sources */,
 				E9BB3765276B6C38001CA59A /* CategoriesData.swift in Sources */,
 				E9BB3764276B6C38001CA59A /* EventsData.swift in Sources */,
 				E9BB3783276B70CA001CA59A /* CDEvents+CoreDataClass.swift in Sources */,
+				E9BB3791276B72A2001CA59A /* RealmAdapter.swift in Sources */,
 				E9BB374A276B557A001CA59A /* CustomFonts.swift in Sources */,
-				E9BB377B276B70AF001CA59A /* TraineeApp.xcdatamodeld in Sources */,
+				E9BB377B276B70AF001CA59A /* TrainingApp.xcdatamodeld in Sources */,
 				E9BB3782276B70CA001CA59A /* CDCategories+CoreDataClass.swift in Sources */,
 				E9BB3770276B6E76001CA59A /* CharityEventViewController.swift in Sources */,
 				E9BB3786276B70FC001CA59A /* CoreDataStack.swift in Sources */,
 				E9BB3740276B54A0001CA59A /* CategoriesViewController.swift in Sources */,
+				E9BB3795276B7314001CA59A /* CharityEventViewCell.swift in Sources */,
+				E9BB378F276B72A2001CA59A /* CoreDataAdapter.swift in Sources */,
 				E9BB3781276B70CA001CA59A /* CDEvents+CoreDataProperties.swift in Sources */,
 				E9BB376B276B6D99001CA59A /* DataFromFile.swift in Sources */,
 				E9BB371F276B3AD1001CA59A /* SceneDelegate.swift in Sources */,
@@ -689,13 +733,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		E9BB3778276B70AF001CA59A /* TraineeApp.xcdatamodeld */ = {
+		E9BB3778276B70AF001CA59A /* TrainingApp.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				E9BB3779276B70AF001CA59A /* TraineeApp.xcdatamodel */,
 			);
 			currentVersion = E9BB3779276B70AF001CA59A /* TraineeApp.xcdatamodel */;
-			path = TraineeApp.xcdatamodeld;
+			path = TrainingApp.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
