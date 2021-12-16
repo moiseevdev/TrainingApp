@@ -26,6 +26,10 @@
 		E9BB3758276B5697001CA59A /* CategoriesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9BB3756276B5697001CA59A /* CategoriesCell.xib */; };
 		E9BB375F276B6AAC001CA59A /* categories.json in Resources */ = {isa = PBXBuildFile; fileRef = E9BB375D276B6AAC001CA59A /* categories.json */; };
 		E9BB3760276B6AAC001CA59A /* events.json in Resources */ = {isa = PBXBuildFile; fileRef = E9BB375E276B6AAC001CA59A /* events.json */; };
+		E9BB3764276B6C38001CA59A /* EventsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BB3762276B6C38001CA59A /* EventsData.swift */; };
+		E9BB3765276B6C38001CA59A /* CategoriesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BB3763276B6C38001CA59A /* CategoriesData.swift */; };
+		E9BB376B276B6D99001CA59A /* DataFromFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BB3769276B6D99001CA59A /* DataFromFile.swift */; };
+		E9BB376C276B6D99001CA59A /* ReadJSONFromFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BB376A276B6D99001CA59A /* ReadJSONFromFile.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +56,10 @@
 		E9BB3756276B5697001CA59A /* CategoriesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoriesCell.xib; sourceTree = "<group>"; };
 		E9BB375D276B6AAC001CA59A /* categories.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = categories.json; sourceTree = "<group>"; };
 		E9BB375E276B6AAC001CA59A /* events.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = events.json; sourceTree = "<group>"; };
+		E9BB3762276B6C38001CA59A /* EventsData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsData.swift; sourceTree = "<group>"; };
+		E9BB3763276B6C38001CA59A /* CategoriesData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesData.swift; sourceTree = "<group>"; };
+		E9BB3769276B6D99001CA59A /* DataFromFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataFromFile.swift; sourceTree = "<group>"; };
+		E9BB376A276B6D99001CA59A /* ReadJSONFromFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadJSONFromFile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,8 +134,8 @@
 		E9BB3731276B4D36001CA59A /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				E9BB3750276B5627001CA59A /* CustomViews */,
-				E9BB3753276B5664001CA59A /* Cells */,
+				E9BB3766276B6D4A001CA59A /* Common */,
+				E9BB3768276B6D86001CA59A /* Services */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -237,6 +245,42 @@
 				E9BB375E276B6AAC001CA59A /* events.json */,
 			);
 			path = JsonFiles;
+			sourceTree = "<group>";
+		};
+		E9BB3761276B6C17001CA59A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E9BB3763276B6C38001CA59A /* CategoriesData.swift */,
+				E9BB3762276B6C38001CA59A /* EventsData.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E9BB3766276B6D4A001CA59A /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				E9BB3767276B6D79001CA59A /* New Group */,
+				E9BB3761276B6C17001CA59A /* Models */,
+				E9BB3750276B5627001CA59A /* CustomViews */,
+				E9BB3753276B5664001CA59A /* Cells */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		E9BB3767276B6D79001CA59A /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		E9BB3768276B6D86001CA59A /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				E9BB3769276B6D99001CA59A /* DataFromFile.swift */,
+				E9BB376A276B6D99001CA59A /* ReadJSONFromFile.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -362,12 +406,16 @@
 				E9BB3752276B5632001CA59A /* TabBar.swift in Sources */,
 				E9BB374D276B5590001CA59A /* Images.swift in Sources */,
 				E9BB3744276B551B001CA59A /* TestViewController.swift in Sources */,
+				E9BB376C276B6D99001CA59A /* ReadJSONFromFile.swift in Sources */,
 				E9BB374F276B5598001CA59A /* CustomColors.swift in Sources */,
 				E9BB373B276B5451001CA59A /* TabBarController.swift in Sources */,
 				E9BB3757276B5697001CA59A /* CategoriesCell.swift in Sources */,
 				E9BB371D276B3AD1001CA59A /* AppDelegate.swift in Sources */,
+				E9BB3765276B6C38001CA59A /* CategoriesData.swift in Sources */,
+				E9BB3764276B6C38001CA59A /* EventsData.swift in Sources */,
 				E9BB374A276B557A001CA59A /* CustomFonts.swift in Sources */,
 				E9BB3740276B54A0001CA59A /* CategoriesViewController.swift in Sources */,
+				E9BB376B276B6D99001CA59A /* DataFromFile.swift in Sources */,
 				E9BB371F276B3AD1001CA59A /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
