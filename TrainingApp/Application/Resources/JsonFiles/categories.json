@@ -1,0 +1,29 @@
+{
+    "categories": [
+      {
+        "categoryID": 0,
+        "categoryName": "Дети",
+        "image": "children"
+      },
+      {
+        "categoryID": 1,
+        "categoryName": "Взрослые",
+        "image": "adults"
+      },
+      {
+        "categoryID": 2,
+        "categoryName": "Пожилые",
+        "image": "elderlyPeople"
+      },
+      {
+        "categoryID": 3,
+        "categoryName": "Животные",
+        "image": "animals"
+      },
+      {
+        "categoryID": 4,
+        "categoryName": "Мероприятия",
+        "image": "events"
+      }
+    ]
+  }

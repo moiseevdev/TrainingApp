@@ -24,6 +24,16 @@
 		E9BB3752276B5632001CA59A /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BB3751276B5632001CA59A /* TabBar.swift */; };
 		E9BB3757276B5697001CA59A /* CategoriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BB3755276B5697001CA59A /* CategoriesCell.swift */; };
 		E9BB3758276B5697001CA59A /* CategoriesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9BB3756276B5697001CA59A /* CategoriesCell.xib */; };
+		E9BB375F276B6AAC001CA59A /* categories.json in Resources */ = {isa = PBXBuildFile; fileRef = E9BB375D276B6AAC001CA59A /* categories.json */; };
+		E9BB3760276B6AAC001CA59A /* events.json in Resources */ = {isa = PBXBuildFile; fileRef = E9BB375E276B6AAC001CA59A /* events.json */; };
+		E9BB3764276B6C38001CA59A /* EventsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BB3762276B6C38001CA59A /* EventsData.swift */; };
+		E9BB3765276B6C38001CA59A /* CategoriesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BB3763276B6C38001CA59A /* CategoriesData.swift */; };
+		E9BB376B276B6D99001CA59A /* DataFromFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BB3769276B6D99001CA59A /* DataFromFile.swift */; };
+		E9BB376C276B6D99001CA59A /* ReadJSONFromFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BB376A276B6D99001CA59A /* ReadJSONFromFile.swift */; };
+		E9BB3770276B6E76001CA59A /* CharityEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BB376E276B6E75001CA59A /* CharityEventViewController.swift */; };
+		E9BB3771276B6E76001CA59A /* CharityEventViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9BB376F276B6E76001CA59A /* CharityEventViewController.xib */; };
+		E9BB3775276B6EA0001CA59A /* EventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BB3773276B6EA0001CA59A /* EventDetailsViewController.swift */; };
+		E9BB3776276B6EA0001CA59A /* EventDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9BB3774276B6EA0001CA59A /* EventDetailsViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +58,16 @@
 		E9BB3751276B5632001CA59A /* TabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		E9BB3755276B5697001CA59A /* CategoriesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesCell.swift; sourceTree = "<group>"; };
 		E9BB3756276B5697001CA59A /* CategoriesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoriesCell.xib; sourceTree = "<group>"; };
+		E9BB375D276B6AAC001CA59A /* categories.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = categories.json; sourceTree = "<group>"; };
+		E9BB375E276B6AAC001CA59A /* events.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = events.json; sourceTree = "<group>"; };
+		E9BB3762276B6C38001CA59A /* EventsData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsData.swift; sourceTree = "<group>"; };
+		E9BB3763276B6C38001CA59A /* CategoriesData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesData.swift; sourceTree = "<group>"; };
+		E9BB3769276B6D99001CA59A /* DataFromFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataFromFile.swift; sourceTree = "<group>"; };
+		E9BB376A276B6D99001CA59A /* ReadJSONFromFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadJSONFromFile.swift; sourceTree = "<group>"; };
+		E9BB376E276B6E75001CA59A /* CharityEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharityEventViewController.swift; sourceTree = "<group>"; };
+		E9BB376F276B6E76001CA59A /* CharityEventViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CharityEventViewController.xib; sourceTree = "<group>"; };
+		E9BB3773276B6EA0001CA59A /* EventDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailsViewController.swift; sourceTree = "<group>"; };
+		E9BB3774276B6EA0001CA59A /* EventDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventDetailsViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,8 +142,8 @@
 		E9BB3731276B4D36001CA59A /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				E9BB3750276B5627001CA59A /* CustomViews */,
-				E9BB3753276B5664001CA59A /* Cells */,
+				E9BB3766276B6D4A001CA59A /* Common */,
+				E9BB3768276B6D86001CA59A /* Services */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -133,6 +153,8 @@
 			children = (
 				E9BB3738276B543A001CA59A /* TabBar */,
 				E9BB373D276B547D001CA59A /* Categories */,
+				E9BB3772276B6E7B001CA59A /* EventDetails */,
+				E9BB376D276B6E64001CA59A /* CharityEvent */,
 				E9BB3742276B5505001CA59A /* TestViewController */,
 			);
 			path = Scenes;
@@ -144,6 +166,7 @@
 				E9BB3747276B5564001CA59A /* Colors */,
 				E9BB3746276B5550001CA59A /* Images */,
 				E9BB3745276B554A001CA59A /* Fonts */,
+				E9BB375C276B6A51001CA59A /* JsonFiles */,
 				E9BB3725276B3AD6001CA59A /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -225,6 +248,69 @@
 			path = CategoriesCell;
 			sourceTree = "<group>";
 		};
+		E9BB375C276B6A51001CA59A /* JsonFiles */ = {
+			isa = PBXGroup;
+			children = (
+				E9BB375D276B6AAC001CA59A /* categories.json */,
+				E9BB375E276B6AAC001CA59A /* events.json */,
+			);
+			path = JsonFiles;
+			sourceTree = "<group>";
+		};
+		E9BB3761276B6C17001CA59A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E9BB3763276B6C38001CA59A /* CategoriesData.swift */,
+				E9BB3762276B6C38001CA59A /* EventsData.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E9BB3766276B6D4A001CA59A /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				E9BB3767276B6D79001CA59A /* New Group */,
+				E9BB3761276B6C17001CA59A /* Models */,
+				E9BB3750276B5627001CA59A /* CustomViews */,
+				E9BB3753276B5664001CA59A /* Cells */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		E9BB3767276B6D79001CA59A /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		E9BB3768276B6D86001CA59A /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				E9BB3769276B6D99001CA59A /* DataFromFile.swift */,
+				E9BB376A276B6D99001CA59A /* ReadJSONFromFile.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		E9BB376D276B6E64001CA59A /* CharityEvent */ = {
+			isa = PBXGroup;
+			children = (
+				E9BB376E276B6E75001CA59A /* CharityEventViewController.swift */,
+				E9BB376F276B6E76001CA59A /* CharityEventViewController.xib */,
+			);
+			path = CharityEvent;
+			sourceTree = "<group>";
+		};
+		E9BB3772276B6E7B001CA59A /* EventDetails */ = {
+			isa = PBXGroup;
+			children = (
+				E9BB3773276B6EA0001CA59A /* EventDetailsViewController.swift */,
+				E9BB3774276B6EA0001CA59A /* EventDetailsViewController.xib */,
+			);
+			path = EventDetails;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -285,11 +371,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9BB3771276B6E76001CA59A /* CharityEventViewController.xib in Resources */,
+				E9BB3760276B6AAC001CA59A /* events.json in Resources */,
+				E9BB375F276B6AAC001CA59A /* categories.json in Resources */,
 				E9BB3735276B5023001CA59A /* LaunchScreen.storyboard in Resources */,
 				E9BB374B276B557A001CA59A /* Officinasansextraboldscc.otf in Resources */,
 				E9BB3726276B3AD6001CA59A /* Assets.xcassets in Resources */,
 				E9BB3741276B54A0001CA59A /* CategoriesViewController.xib in Resources */,
 				E9BB373C276B5451001CA59A /* Main.storyboard in Resources */,
+				E9BB3776276B6EA0001CA59A /* EventDetailsViewController.xib in Resources */,
 				E9BB3758276B5697001CA59A /* CategoriesCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -346,12 +436,18 @@
 				E9BB3752276B5632001CA59A /* TabBar.swift in Sources */,
 				E9BB374D276B5590001CA59A /* Images.swift in Sources */,
 				E9BB3744276B551B001CA59A /* TestViewController.swift in Sources */,
+				E9BB376C276B6D99001CA59A /* ReadJSONFromFile.swift in Sources */,
+				E9BB3775276B6EA0001CA59A /* EventDetailsViewController.swift in Sources */,
 				E9BB374F276B5598001CA59A /* CustomColors.swift in Sources */,
 				E9BB373B276B5451001CA59A /* TabBarController.swift in Sources */,
 				E9BB3757276B5697001CA59A /* CategoriesCell.swift in Sources */,
 				E9BB371D276B3AD1001CA59A /* AppDelegate.swift in Sources */,
+				E9BB3765276B6C38001CA59A /* CategoriesData.swift in Sources */,
+				E9BB3764276B6C38001CA59A /* EventsData.swift in Sources */,
 				E9BB374A276B557A001CA59A /* CustomFonts.swift in Sources */,
+				E9BB3770276B6E76001CA59A /* CharityEventViewController.swift in Sources */,
 				E9BB3740276B54A0001CA59A /* CategoriesViewController.swift in Sources */,
+				E9BB376B276B6D99001CA59A /* DataFromFile.swift in Sources */,
 				E9BB371F276B3AD1001CA59A /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
