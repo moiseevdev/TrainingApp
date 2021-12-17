@@ -10,20 +10,20 @@ import RealmSwift
 
 class RealmAdapter {
     
-    var realmManager = RealmManager()
+    var realmService = RealmService()
     var categories: Results<Categor>!
     var events: Results<Event>!
     
     public func saveCategories() {
         let modelCategories = DataFromFile().modelCategories
-        realmManager.saveCategoriesModel(model: modelCategories!)
-        categories = self.realmManager.localRealm.objects(Categor.self)
+        realmService.saveCategoriesModel(model: modelCategories!)
+        categories = self.realmService.localRealm.objects(Categor.self)
     }
     
     public func saveEvents() {
         let modelEvents = DataFromFile().modelEvents
-        self.realmManager.saveEventsModel(model: modelEvents!)
-        self.events = self.realmManager.localRealm.objects(Event.self)
+        realmService.saveEventsModel(model: modelEvents!)
+        events = self.realmService.localRealm.objects(Event.self)
     }
     
 }

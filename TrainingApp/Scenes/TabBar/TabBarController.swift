@@ -7,6 +7,7 @@
 
 import UIKit
 
+// MARK: - TabBarController
 final class TabBarController: UITabBarController {
     
     private let middleButtonDiameter: CGFloat = 42
@@ -24,7 +25,7 @@ final class TabBarController: UITabBarController {
     
     private lazy var heartImageView: UIImageView = {
         let heartImageView = UIImageView()
-        heartImageView.image = UIImage(systemName: "heart.fill")
+        heartImageView.image = Images.heartFill
         heartImageView.tintColor = .white
         heartImageView.translatesAutoresizingMaskIntoConstraints = false
         return heartImageView
@@ -35,56 +36,66 @@ final class TabBarController: UITabBarController {
         setupUI()
     }
 
-    private func setupUI() {
+    @objc
+    func didPressMiddleButton() {
+        selectedIndex = 2
+        middleButton.backgroundColor = greenColor
+    }
+}
+
+// MARK: - Private methods
+private extension TabBarController {
+    
+    func setupUI() {
+        addSubviews()
+        
+        let newsViewController = TestViewController()
+        newsViewController.tabBarItem.title = Strings.news
+        newsViewController.tabBarItem.image = Images.listBullet
+        
+        let searchViewController = TestViewController()
+        searchViewController.tabBarItem.title = Strings.search
+        searchViewController.tabBarItem.image = Images.magnifyingglass
+        
+        let categoriesViewController = UINavigationController(rootViewController: CategoriesViewController())
+        guard let font = CustomFonts.OfficinasansextraboldsccFont21 else {
+            return
+        }
+        let appearanceNavigationBar =  UINavigationBar.appearance()
+        appearanceNavigationBar.barTintColor = CustomColors.greenColor
+        appearanceNavigationBar.titleTextAttributes = [.font: font, .foregroundColor: UIColor.white]
+        let appearanceTabBar = UITabBar.appearance()
+        appearanceTabBar.tintColor = CustomColors.greenColor
+        categoriesViewController.tabBarItem.title = Strings.help
+        
+        let historyViewController = TestViewController()
+        historyViewController.tabBarItem.title = Strings.history
+        historyViewController.tabBarItem.image = Images.clockArrowCirclepath
+        
+        let profileViewController = TestViewController()
+        profileViewController.tabBarItem.title = Strings.profile
+        profileViewController.tabBarItem.image = Images.personCropCircle
+        
+        viewControllers = [newsViewController, searchViewController, categoriesViewController, historyViewController, profileViewController]
+    }
+    
+    func addSubviews() {
         tabBar.addSubview(middleButton)
         middleButton.addSubview(heartImageView)
-
+        
         NSLayoutConstraint.activate([
             middleButton.heightAnchor.constraint(equalToConstant: middleButtonDiameter),
             middleButton.widthAnchor.constraint(equalToConstant: middleButtonDiameter),
             middleButton.centerXAnchor.constraint(equalTo: tabBar.centerXAnchor),
             middleButton.topAnchor.constraint(equalTo: tabBar.topAnchor, constant: -10)
         ])
-
+        
         NSLayoutConstraint.activate([
             heartImageView.heightAnchor.constraint(equalToConstant: 15),
             heartImageView.widthAnchor.constraint(equalToConstant: 18),
             heartImageView.centerXAnchor.constraint(equalTo: middleButton.centerXAnchor),
             heartImageView.centerYAnchor.constraint(equalTo: middleButton.centerYAnchor)
         ])
-
-        let newsViewController = TestViewController()
-        newsViewController.tabBarItem.title = "Новости"
-        newsViewController.tabBarItem.image = UIImage(systemName: "list.bullet")
-
-        let searchViewController = TestViewController()
-        searchViewController.tabBarItem.title = "Поиск"
-        searchViewController.tabBarItem.image = UIImage(systemName: "magnifyingglass")
-
-        let categoriesViewController = UINavigationController(rootViewController: CategoriesViewController())
-        guard let font = CustomFonts.OfficinasansextraboldsccFont21 else { return }
-        let appearanceNavigationBar =  UINavigationBar.appearance()
-        appearanceNavigationBar.barTintColor = CustomColors.greenColor
-        appearanceNavigationBar.titleTextAttributes = [.font: font, .foregroundColor: UIColor.white]
-        let appearanceTabBar = UITabBar.appearance()
-        appearanceTabBar.tintColor = CustomColors.greenColor
-        categoriesViewController.tabBarItem.title = "Помочь"
-        
-        let historyViewController = TestViewController()
-        historyViewController.tabBarItem.title = "История"
-        historyViewController.tabBarItem.image = UIImage(systemName: "clock.arrow.circlepath")
-
-        let profileViewController = TestViewController()
-        profileViewController.tabBarItem.title = "Профиль"
-        profileViewController.tabBarItem.image = UIImage(systemName: "person.crop.circle")
-
-        viewControllers = [newsViewController, searchViewController, categoriesViewController, historyViewController, profileViewController]
-    }
-
-    @objc
-    func didPressMiddleButton() {
-        selectedIndex = 2
-        middleButton.backgroundColor = greenColor
     }
 }
 

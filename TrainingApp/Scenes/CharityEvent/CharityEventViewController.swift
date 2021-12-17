@@ -7,17 +7,17 @@
 
 import UIKit
 
-class CharityEventViewController: UIViewController {
+final class CharityEventViewController: UIViewController {
 
     private var dataBase = DataBaseAdapter.dataBase
     
-    var categoryId: Int!
+    var categoryId: Int?
 
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var collectionView: UICollectionView!
     
-    private let backButton = Images.rectangle7
-    private let filterButton = Images.filter
+    private let backButtonImage = Images.rectangle7
+    private let filterButtonImage = Images.filter
     
     private let itemsPerRow: CGFloat = 1
     private let sectionInserts = UIEdgeInsets(top: 10, left: 8, bottom: 20, right: 8)
@@ -32,7 +32,6 @@ class CharityEventViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupNavigationBar()
         setupCollectionView()
         setupSegmentedcontrol()
@@ -51,20 +50,26 @@ class CharityEventViewController: UIViewController {
     }
     
     func hideActivityIndicator() {
-        self.activityIndicator.isHidden = true
-        self.activityIndicator.stopAnimating()
-        self.collectionView.isHidden = false
+        activityIndicator.isHidden = true
+        activityIndicator.stopAnimating()
+        collectionView.isHidden = false
     }
 
     private func saveEvents() {
-        self.dataBase.saveEvents()
-        self.collectionView.reloadData()
+        dataBase.saveEvents()
+        collectionView.reloadData()
     }
     
     private func setupNavigationBar() {
-        title = "дети"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: backButton, style: .plain, target: self, action: #selector(popViewController))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: filterButton, style: .plain, target: nil, action: nil)
+        title = Strings.childrens
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: backButtonImage,
+                                                           style: .plain,
+                                                           target: self,
+                                                           action: #selector(popViewController))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: filterButtonImage,
+                                                            style: .plain,
+                                                            target: nil,
+                                                            action: nil)
     }
     
     private func setupCollectionView() {
@@ -93,7 +98,8 @@ class CharityEventViewController: UIViewController {
 
 }
 
-extension CharityEventViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+// MARK: - UICollectionViewDataSource
+extension CharityEventViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return dataBase.events.count
     }
@@ -110,6 +116,10 @@ extension CharityEventViewController: UICollectionViewDataSource, UICollectionVi
         }
         return UICollectionViewCell()
     }
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+extension CharityEventViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 359, height: 413)
@@ -128,11 +138,11 @@ extension CharityEventViewController: UICollectionViewDataSource, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let events = self.dataBase.events[indexPath.item]
+        let events = dataBase.events[indexPath.item]
         let eventID = events.eventId
         let eventDetailsVC = EventDetailsViewController()
         eventDetailsVC.eventId = Int(eventID)
-        self.navigationController?.pushViewController(eventDetailsVC, animated: true)
+        navigationController?.pushViewController(eventDetailsVC, animated: true)
     }
     
 }

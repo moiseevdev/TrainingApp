@@ -9,12 +9,11 @@ import Foundation
 import CoreData
 import UIKit
 
-class CoreDataStack {
+class CoreDataService {
 
-    static let shared = CoreDataStack()
+    static let shared = CoreDataService()
     var categories = [CDCategories]()
     var events = [CDEvents]()
-    
     
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "TrainingApp")

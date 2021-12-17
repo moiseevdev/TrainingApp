@@ -7,11 +7,11 @@
 
 import UIKit
 
-class EventDetailsViewController: UIViewController {
+final class EventDetailsViewController: UIViewController {
     
     private var dataBase = DataBaseAdapter.dataBase
     
-    var eventId: Int!
+    var eventId: Int?
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var titleNameLabel: UILabel!
@@ -33,12 +33,11 @@ class EventDetailsViewController: UIViewController {
         return activityIndicator
     }()
     
-    private let backButton = Images.rectangle7
-    private let shareButton = Images.iconShare
+    private let backButtonImage = Images.rectangle7
+    private let shareButtonImage = Images.iconShare
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         titleNameLabel.font = CustomFonts.OfficinasansextraboldsccFont21
         titleNameLabel.textColor = CustomColors.blueGrey
         setupNavigationController()
@@ -49,7 +48,6 @@ class EventDetailsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         tabBarController?.tabBar.isHidden = true
     }
     
@@ -62,28 +60,34 @@ class EventDetailsViewController: UIViewController {
         activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
     
-    func hideActivityIndicator() {
-        self.activityIndicator.isHidden = true
-        self.activityIndicator.stopAnimating()
-        self.scrollView.isHidden = false
+    private func hideActivityIndicator() {
+        activityIndicator.isHidden = true
+        activityIndicator.stopAnimating()
+        scrollView.isHidden = false
     }
 
     private func fetchData() {
-        titleNameLabel.text = self.dataBase.events[self.eventId].eventName
-        timeLeftLabel.text = self.dataBase.events[self.eventId].timeLeft
-        addressLabel.text = self.dataBase.events[self.eventId].address
-        numberLabel.text = self.dataBase.events[self.eventId].number
-        firstImageLabel.image = UIImage(named: "\(self.dataBase.events[self.eventId].image1 ?? "test")")
-        secondImageLabel.image = UIImage(named: "\(self.dataBase.events[self.eventId].image2 ?? "test")")
-        thirdImageLabel.image = UIImage(named: "\(self.dataBase.events[self.eventId].image3 ?? "test")")
-        firstDescriptionLabel.text = self.dataBase.events[self.eventId].description1
-        secondDescriptionLabel.text = self.dataBase.events[self.eventId].description2
+        titleNameLabel.text = dataBase.events[self.eventId ?? 1].eventName
+        timeLeftLabel.text = dataBase.events[self.eventId ?? 1].timeLeft
+        addressLabel.text = dataBase.events[self.eventId ?? 1].address
+        numberLabel.text = dataBase.events[self.eventId ?? 1].number
+        firstImageLabel.image = UIImage(named: "\(dataBase.events[self.eventId ?? 1].image1 ?? "test")")
+        secondImageLabel.image = UIImage(named: "\(dataBase.events[self.eventId ?? 1].image2 ?? "test")")
+        thirdImageLabel.image = UIImage(named: "\(dataBase.events[self.eventId ?? 1].image3 ?? "test")")
+        firstDescriptionLabel.text = dataBase.events[self.eventId ?? 1].description1
+        secondDescriptionLabel.text = dataBase.events[self.eventId ?? 1].description2
     }
     
     private func setupNavigationController() {
-        self.title = dataBase.events[self.eventId!].eventName
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: backButton, style: .plain, target: self, action: #selector(popViewController))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: shareButton, style: .plain, target: nil, action: nil)
+        title = dataBase.events[eventId!].eventName
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: backButtonImage,
+                                                           style: .plain,
+                                                           target: self,
+                                                           action: #selector(popViewController))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: shareButtonImage,
+                                                            style: .plain,
+                                                            target: nil,
+                                                            action: nil)
     }
     
     @objc private func popViewController() {

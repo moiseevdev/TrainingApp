@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-class RealmManager {
+class RealmService {
     
     let localRealm = try! Realm()
     

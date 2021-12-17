@@ -9,20 +9,20 @@ import Foundation
 
 class CoreDataAdapter {
     
-    var coreDataStack = CoreDataStack()
+    var coreDataService = CoreDataService()
     var categories: Array<CDCategories> = []
     var events: Array<CDEvents> = []
     
     public func saveCategories() {
         let modelCategories = DataFromFile().modelCategories
-        self.coreDataStack.saveCategories(modelCategories: modelCategories)
-        self.categories = self.coreDataStack.fetchDataCDCategories()
+        self.coreDataService.saveCategories(modelCategories: modelCategories)
+        self.categories = self.coreDataService.fetchDataCDCategories()
     }
     
     public func saveEvents() {
         let modelEvents = DataFromFile().modelEvents
-        self.coreDataStack.saveEvents(modelEvents: modelEvents)
-        self.events = self.coreDataStack.fetchDataCDEvents()
+        self.coreDataService.saveEvents(modelEvents: modelEvents)
+        self.events = self.coreDataService.fetchDataCDEvents()
     }
 
 

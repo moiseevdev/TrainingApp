@@ -34,7 +34,7 @@ final class TabBar: UITabBar {
         return pointIsInside
     }
 
-    func drawTabBar() {
+    private func drawTabBar() {
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = shapePath()
         shapeLayer.strokeColor = UIColor.lightGray.cgColor

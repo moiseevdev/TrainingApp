@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		34EB32EF4DA52F259F98F2D5 /* Pods_TrainingApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E17DDB2A8C221BDF782BFC /* Pods_TrainingApp.framework */; };
+		E9269C27276CB0A200D3CCDD /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9269C26276CB0A200D3CCDD /* Strings.swift */; };
 		E9BB371D276B3AD1001CA59A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BB371C276B3AD1001CA59A /* AppDelegate.swift */; };
 		E9BB371F276B3AD1001CA59A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BB371E276B3AD1001CA59A /* SceneDelegate.swift */; };
 		E9BB3726276B3AD6001CA59A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9BB3725276B3AD6001CA59A /* Assets.xcassets */; };
@@ -39,8 +40,8 @@
 		E9BB3782276B70CA001CA59A /* CDCategories+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BB377E276B70CA001CA59A /* CDCategories+CoreDataClass.swift */; };
 		E9BB3783276B70CA001CA59A /* CDEvents+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BB377F276B70CA001CA59A /* CDEvents+CoreDataClass.swift */; };
 		E9BB3784276B70CA001CA59A /* CDCategories+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BB3780276B70CA001CA59A /* CDCategories+CoreDataProperties.swift */; };
-		E9BB3786276B70FC001CA59A /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BB3785276B70FC001CA59A /* CoreDataStack.swift */; };
-		E9BB3788276B71F6001CA59A /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BB3787276B71F6001CA59A /* RealmManager.swift */; };
+		E9BB3786276B70FC001CA59A /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BB3785276B70FC001CA59A /* CoreDataService.swift */; };
+		E9BB3788276B71F6001CA59A /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BB3787276B71F6001CA59A /* RealmService.swift */; };
 		E9BB378F276B72A2001CA59A /* CoreDataAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BB378C276B72A2001CA59A /* CoreDataAdapter.swift */; };
 		E9BB3790276B72A2001CA59A /* DataBaseAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BB378D276B72A2001CA59A /* DataBaseAdapter.swift */; };
 		E9BB3791276B72A2001CA59A /* RealmAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BB378E276B72A2001CA59A /* RealmAdapter.swift */; };
@@ -53,6 +54,7 @@
 		18E17DDB2A8C221BDF782BFC /* Pods_TrainingApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TrainingApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CBBE7C3D85099E00FC20ECC /* Pods-TrainingApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrainingApp.release.xcconfig"; path = "Target Support Files/Pods-TrainingApp/Pods-TrainingApp.release.xcconfig"; sourceTree = "<group>"; };
 		9E4B825E94B75E893168786C /* Pods-TrainingApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrainingApp.debug.xcconfig"; path = "Target Support Files/Pods-TrainingApp/Pods-TrainingApp.debug.xcconfig"; sourceTree = "<group>"; };
+		E9269C26276CB0A200D3CCDD /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		E9BB3719276B3AD1001CA59A /* TrainingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrainingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9BB371C276B3AD1001CA59A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E9BB371E276B3AD1001CA59A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -86,8 +88,8 @@
 		E9BB377E276B70CA001CA59A /* CDCategories+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CDCategories+CoreDataClass.swift"; sourceTree = "<group>"; };
 		E9BB377F276B70CA001CA59A /* CDEvents+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CDEvents+CoreDataClass.swift"; sourceTree = "<group>"; };
 		E9BB3780276B70CA001CA59A /* CDCategories+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CDCategories+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		E9BB3785276B70FC001CA59A /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
-		E9BB3787276B71F6001CA59A /* RealmManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		E9BB3785276B70FC001CA59A /* CoreDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
+		E9BB3787276B71F6001CA59A /* RealmService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		E9BB378C276B72A2001CA59A /* CoreDataAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataAdapter.swift; sourceTree = "<group>"; };
 		E9BB378D276B72A2001CA59A /* DataBaseAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataBaseAdapter.swift; sourceTree = "<group>"; };
 		E9BB378E276B72A2001CA59A /* RealmAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmAdapter.swift; sourceTree = "<group>"; };
@@ -123,6 +125,14 @@
 				18E17DDB2A8C221BDF782BFC /* Pods_TrainingApp.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E9269C25276CB08B00D3CCDD /* Strings */ = {
+			isa = PBXGroup;
+			children = (
+				E9269C26276CB0A200D3CCDD /* Strings.swift */,
+			);
+			path = Strings;
 			sourceTree = "<group>";
 		};
 		E9BB3710276B3AD1001CA59A = {
@@ -189,6 +199,7 @@
 		E9BB3733276B4E8C001CA59A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E9269C25276CB08B00D3CCDD /* Strings */,
 				E9BB3747276B5564001CA59A /* Colors */,
 				E9BB3746276B5550001CA59A /* Images */,
 				E9BB3745276B554A001CA59A /* Fonts */,
@@ -310,10 +321,10 @@
 			isa = PBXGroup;
 			children = (
 				E9BB378B276B7295001CA59A /* DataBaseAdapter */,
-				E9BB3785276B70FC001CA59A /* CoreDataStack.swift */,
-				E9BB3769276B6D99001CA59A /* DataFromFile.swift */,
+				E9BB3785276B70FC001CA59A /* CoreDataService.swift */,
+				E9BB3787276B71F6001CA59A /* RealmService.swift */,
 				E9BB376A276B6D99001CA59A /* ReadJSONFromFile.swift */,
-				E9BB3787276B71F6001CA59A /* RealmManager.swift */,
+				E9BB3769276B6D99001CA59A /* DataFromFile.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -502,7 +513,7 @@
 				E9BB3744276B551B001CA59A /* TestViewController.swift in Sources */,
 				E9BB376C276B6D99001CA59A /* ReadJSONFromFile.swift in Sources */,
 				E9BB3775276B6EA0001CA59A /* EventDetailsViewController.swift in Sources */,
-				E9BB3788276B71F6001CA59A /* RealmManager.swift in Sources */,
+				E9BB3788276B71F6001CA59A /* RealmService.swift in Sources */,
 				E9BB3799276B7837001CA59A /* NSManagedObjectExtensions.swift in Sources */,
 				E9BB374F276B5598001CA59A /* CustomColors.swift in Sources */,
 				E9BB373B276B5451001CA59A /* TabBarController.swift in Sources */,
@@ -518,7 +529,8 @@
 				E9BB377B276B70AF001CA59A /* TrainingApp.xcdatamodeld in Sources */,
 				E9BB3782276B70CA001CA59A /* CDCategories+CoreDataClass.swift in Sources */,
 				E9BB3770276B6E76001CA59A /* CharityEventViewController.swift in Sources */,
-				E9BB3786276B70FC001CA59A /* CoreDataStack.swift in Sources */,
+				E9BB3786276B70FC001CA59A /* CoreDataService.swift in Sources */,
+				E9269C27276CB0A200D3CCDD /* Strings.swift in Sources */,
 				E9BB3740276B54A0001CA59A /* CategoriesViewController.swift in Sources */,
 				E9BB3795276B7314001CA59A /* CharityEventViewCell.swift in Sources */,
 				E9BB378F276B72A2001CA59A /* CoreDataAdapter.swift in Sources */,

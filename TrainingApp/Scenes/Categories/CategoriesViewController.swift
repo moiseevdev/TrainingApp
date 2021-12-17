@@ -17,7 +17,7 @@ final class CategoriesViewController: UIViewController {
     private let itemsPerRow: CGFloat = 2
     private let sectionInserts = UIEdgeInsets(top: 7, left: 9, bottom: 20, right: 9)
 
-    private let backButton = UIImage(named: "rectangle7")?.withRenderingMode(.alwaysOriginal)
+    private let backButtonImage = Images.rectangle7
     
     private var activityIndicator: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView()
@@ -29,7 +29,6 @@ final class CategoriesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupNavigitionBar()
         setupCollectionView()
         showActivityIndicator()
@@ -47,19 +46,19 @@ final class CategoriesViewController: UIViewController {
     }
     
     func hideActivityIndicator() {
-        self.activityIndicator.isHidden = true
-        self.activityIndicator.stopAnimating()
-        self.categoriesCollectionView.isHidden = false
+        activityIndicator.isHidden = true
+        activityIndicator.stopAnimating()
+        categoriesCollectionView.isHidden = false
     }
 
     private func saveCategories() {
-        self.dataBase.saveCategories()
-        self.categoriesCollectionView.reloadData()
+        dataBase.saveCategories()
+        categoriesCollectionView.reloadData()
     }
     
     func setupNavigitionBar() {
-        navigationItem.title = "помочь"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: backButton, style: .plain, target: nil, action: nil)
+        navigationItem.title = Strings.helpNavBar
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: backButtonImage, style: .plain, target: nil, action: nil)
     }
     
     func setupCollectionView() {
@@ -70,14 +69,16 @@ final class CategoriesViewController: UIViewController {
     
 }
 
-extension CategoriesViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+// MARK: - UICollectionViewDataSource
+extension CategoriesViewController: UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return dataBase.categories.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoriesCell", for: indexPath) as? CategoriesCell {
-            let categories = self.dataBase.categories[indexPath.item]
+            let categories = dataBase.categories[indexPath.item]
             cell.nameLabel.text = categories.categoryName
             cell.categoryImage.image = UIImage(named: categories.image ?? "test")
             cell.backgroundColor = CustomColors.lightGrey2
@@ -85,6 +86,10 @@ extension CategoriesViewController: UICollectionViewDataSource, UICollectionView
         }
         return UICollectionViewCell()
     }
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+extension CategoriesViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
@@ -107,10 +112,10 @@ extension CategoriesViewController: UICollectionViewDataSource, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let categories = self.dataBase.categories[indexPath.item]
+        let categories = dataBase.categories[indexPath.item]
         let categoryID = categories.categoryID
         let categoryVC = CharityEventViewController()
         categoryVC.categoryId = Int(categoryID)
-        self.navigationController?.pushViewController(categoryVC, animated: true)
+        navigationController?.pushViewController(categoryVC, animated: true)
     }
 }
