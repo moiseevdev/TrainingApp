@@ -9,9 +9,19 @@ import UIKit
 
 final class CharityEventViewController: UIViewController {
 
+    var categoryId: Int?
+    
+    private var networkService = NetworkService()
     private var dataBase = DataBaseAdapter.dataBase
     
-    var categoryId: Int?
+    private var events: [EventModel] = [] {
+        didSet {
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+                self.hideActivityIndicator()
+            }
+        }
+    }
 
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -36,8 +46,36 @@ final class CharityEventViewController: UIViewController {
         setupCollectionView()
         setupSegmentedcontrol()
         showActivityIndicator()
-        saveEvents()
-        hideActivityIndicator()
+        
+        networkService.fethEvents { result in
+            switch result {
+            case .success(let networkResponse):
+                self.events = networkResponse.map({ EventModel(eventID: $0.eventID,
+                                                               eventName: $0.eventName,
+                                                               image: $0.image,
+                                                               descriptionEvent: $0.descriptionEvent,
+                                                               timeLeft: $0.timeLeft,
+                                                               address: $0.address,
+                                                               number: $0.number,
+                                                               email: $0.email,
+                                                               image1: $0.image1,
+                                                               image2: $0.image2,
+                                                               image3: $0.image3,
+                                                               description1: $0.description1,
+                                                               description2: $0.description2,
+                                                               website: $0.website) })
+            case .failure:
+                self.dataBase.getEvents { result in
+                    switch result {
+                    case .success(let coredataResponse):
+                        self.events = coredataResponse
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                    }
+                }
+            }
+        }
+    
     }
     
     private func showActivityIndicator() {
@@ -53,11 +91,6 @@ final class CharityEventViewController: UIViewController {
         activityIndicator.isHidden = true
         activityIndicator.stopAnimating()
         collectionView.isHidden = false
-    }
-
-    private func saveEvents() {
-        dataBase.saveEvents()
-        collectionView.reloadData()
     }
     
     private func setupNavigationBar() {
@@ -101,14 +134,14 @@ final class CharityEventViewController: UIViewController {
 // MARK: - UICollectionViewDataSource
 extension CharityEventViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return dataBase.events.count
+        return events.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CharityEventViewCell", for: indexPath) as? CharityEventViewCell {
-            let events = dataBase.events[indexPath.item]
+            let events = events[indexPath.item]
             cell.titleNameLabel.text = events.eventName
-            cell.titleImage.image = UIImage(named: events.image ?? "test")
+            cell.titleImage.setImage(imageUrl: events.image ?? "test")
             cell.descriptionEventLabel.text = events.descriptionEvent
             cell.timeLeftLabel.text = events.timeLeft
             cell.backgroundColor = .white
@@ -138,10 +171,10 @@ extension CharityEventViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let events = dataBase.events[indexPath.item]
-        let eventID = events.eventId
+        let events = events[indexPath.item]
+        guard let eventID = events.eventID else { return }
         let eventDetailsVC = EventDetailsViewController()
-        eventDetailsVC.eventId = Int(eventID)
+        eventDetailsVC.eventId = eventID
         navigationController?.pushViewController(eventDetailsVC, animated: true)
     }
     

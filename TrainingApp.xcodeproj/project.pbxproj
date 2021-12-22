@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		34EB32EF4DA52F259F98F2D5 /* Pods_TrainingApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E17DDB2A8C221BDF782BFC /* Pods_TrainingApp.framework */; };
 		E9269C27276CB0A200D3CCDD /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9269C26276CB0A200D3CCDD /* Strings.swift */; };
+		E9AF61F7276E3C9D00C68A28 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF61F6276E3C9D00C68A28 /* NetworkManager.swift */; };
+		E9AF61FB27722BE000C68A28 /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF61FA27722BE000C68A28 /* UIImageViewExtension.swift */; };
+		E9AF61FD27728C0600C68A28 /* NetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF61FC27728C0500C68A28 /* NetworkModel.swift */; };
 		E9BB371D276B3AD1001CA59A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BB371C276B3AD1001CA59A /* AppDelegate.swift */; };
 		E9BB371F276B3AD1001CA59A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BB371E276B3AD1001CA59A /* SceneDelegate.swift */; };
 		E9BB3726276B3AD6001CA59A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9BB3725276B3AD6001CA59A /* Assets.xcassets */; };
@@ -55,6 +58,9 @@
 		7CBBE7C3D85099E00FC20ECC /* Pods-TrainingApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrainingApp.release.xcconfig"; path = "Target Support Files/Pods-TrainingApp/Pods-TrainingApp.release.xcconfig"; sourceTree = "<group>"; };
 		9E4B825E94B75E893168786C /* Pods-TrainingApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrainingApp.debug.xcconfig"; path = "Target Support Files/Pods-TrainingApp/Pods-TrainingApp.debug.xcconfig"; sourceTree = "<group>"; };
 		E9269C26276CB0A200D3CCDD /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		E9AF61F6276E3C9D00C68A28 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		E9AF61FA27722BE000C68A28 /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
+		E9AF61FC27728C0500C68A28 /* NetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkModel.swift; sourceTree = "<group>"; };
 		E9BB3719276B3AD1001CA59A /* TrainingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrainingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9BB371C276B3AD1001CA59A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E9BB371E276B3AD1001CA59A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -302,6 +308,7 @@
 				E9BB3778276B70AF001CA59A /* TrainingApp.xcdatamodeld */,
 				E9BB3763276B6C38001CA59A /* CategoriesData.swift */,
 				E9BB3762276B6C38001CA59A /* EventsData.swift */,
+				E9AF61FC27728C0500C68A28 /* NetworkModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -364,6 +371,7 @@
 				E9BB378D276B72A2001CA59A /* DataBaseAdapter.swift */,
 				E9BB378C276B72A2001CA59A /* CoreDataAdapter.swift */,
 				E9BB378E276B72A2001CA59A /* RealmAdapter.swift */,
+				E9AF61F6276E3C9D00C68A28 /* NetworkManager.swift */,
 			);
 			path = DataBaseAdapter;
 			sourceTree = "<group>";
@@ -381,6 +389,7 @@
 			isa = PBXGroup;
 			children = (
 				E9BB3798276B7837001CA59A /* NSManagedObjectExtensions.swift */,
+				E9AF61FA27722BE000C68A28 /* UIImageViewExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -515,6 +524,7 @@
 				E9BB3775276B6EA0001CA59A /* EventDetailsViewController.swift in Sources */,
 				E9BB3788276B71F6001CA59A /* RealmService.swift in Sources */,
 				E9BB3799276B7837001CA59A /* NSManagedObjectExtensions.swift in Sources */,
+				E9AF61FD27728C0600C68A28 /* NetworkModel.swift in Sources */,
 				E9BB374F276B5598001CA59A /* CustomColors.swift in Sources */,
 				E9BB373B276B5451001CA59A /* TabBarController.swift in Sources */,
 				E9BB3790276B72A2001CA59A /* DataBaseAdapter.swift in Sources */,
@@ -526,6 +536,7 @@
 				E9BB3783276B70CA001CA59A /* CDEvents+CoreDataClass.swift in Sources */,
 				E9BB3791276B72A2001CA59A /* RealmAdapter.swift in Sources */,
 				E9BB374A276B557A001CA59A /* CustomFonts.swift in Sources */,
+				E9AF61F7276E3C9D00C68A28 /* NetworkManager.swift in Sources */,
 				E9BB377B276B70AF001CA59A /* TrainingApp.xcdatamodeld in Sources */,
 				E9BB3782276B70CA001CA59A /* CDCategories+CoreDataClass.swift in Sources */,
 				E9BB3770276B6E76001CA59A /* CharityEventViewController.swift in Sources */,
@@ -537,6 +548,7 @@
 				E9BB3781276B70CA001CA59A /* CDEvents+CoreDataProperties.swift in Sources */,
 				E9BB376B276B6D99001CA59A /* DataFromFile.swift in Sources */,
 				E9BB371F276B3AD1001CA59A /* SceneDelegate.swift in Sources */,
+				E9AF61FB27722BE000C68A28 /* UIImageViewExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -674,6 +686,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -705,6 +718,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;

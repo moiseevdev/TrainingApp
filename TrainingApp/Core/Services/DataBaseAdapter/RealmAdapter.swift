@@ -14,16 +14,34 @@ class RealmAdapter {
     var categories: Results<Categor>!
     var events: Results<Event>!
     
-    public func saveCategories() {
-        let modelCategories = DataFromFile().modelCategories
+    func getCategories(_ completion: (Result<[CategoryModel], Error>) -> Void) {
+        let modelCategories = DataFromFile.modelCategories
         realmService.saveCategoriesModel(model: modelCategories!)
         categories = self.realmService.localRealm.objects(Categor.self)
+        let castResults = Array(self.categories).map({ CategoryModel(categoryID: Int($0.categoryID),
+                                                                     categoryName: $0.categoryName,
+                                                                     image: $0.image) })
+        completion(.success(castResults))
     }
     
-    public func saveEvents() {
-        let modelEvents = DataFromFile().modelEvents
+    func getEvents(_ completion: (Result<[EventModel], Error>) -> Void) {
+        let modelEvents = DataFromFile.modelEvents
         realmService.saveEventsModel(model: modelEvents!)
         events = self.realmService.localRealm.objects(Event.self)
+        let castResults = Array(self.events).map({ EventModel(eventID: Int($0.eventID),
+                                                               eventName: $0.eventName,
+                                                               image: $0.image,
+                                                               descriptionEvent: $0.descriptionEvent,
+                                                               timeLeft: $0.timeLeft,
+                                                               address: $0.address,
+                                                               number: $0.number,
+                                                               email: $0.email,
+                                                               image1: $0.image1,
+                                                               image2: $0.image2,
+                                                               image3: $0.image3,
+                                                               description1: $0.description1,
+                                                               description2: $0.description2,
+                                                               website: $0.website) })
+        completion(.success(castResults))
     }
-    
 }

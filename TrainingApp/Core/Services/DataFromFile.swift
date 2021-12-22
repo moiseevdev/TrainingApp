@@ -8,6 +8,6 @@
 import Foundation
 
 struct DataFromFile {
-    let modelCategories = ReadJSONFromFile().readJSON(fileName: "categories", type: CategoriesData.self)?.categories
-    let modelEvents = ReadJSONFromFile().readJSON(fileName: "events", type: EventsData.self)?.events
+    static let modelCategories = ReadJSONFromFile().readJSON(fileName: "categories", type: CategoriesData.self)?.categories
+    static let modelEvents = ReadJSONFromFile().readJSON(fileName: "events", type: EventsData.self)?.events
 }

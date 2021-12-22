@@ -55,6 +55,15 @@ class CoreDataService {
         return results ?? [CDCategories]()
     }
     
+//    func getData(_ completion: (Result<[ModelTest], Error>) -> Void) {
+//        let request: NSFetchRequest<CDCategories> = CDCategories.fetchRequest()
+//        let results = (try? persistentContainer.viewContext.fetch(request)) ?? [CDCategories]()
+//        let castResults = results.map({ ModelTest(categoryID: Int($0.categoryID),
+//                                                   categoryName: $0.categoryName!,
+//                                                   image: $0.image!) })
+//        completion(.success(castResults))
+//    }
+    
     func fetchDataCDEvents() -> [CDEvents] {
         let request: NSFetchRequest<CDEvents> = CDEvents.fetchRequest()
         let results = try? persistentContainer.viewContext.fetch(request)
@@ -96,7 +105,7 @@ class CoreDataService {
                 context.performAndWait {
                     modelEvents?.forEach { event in
                         let cdEvent = CDEvents(context: context)
-                        cdEvent.eventId = Int16(event.eventId)
+                        cdEvent.eventId = Int16(event.eventID)
                         cdEvent.eventName = event.eventName
                         cdEvent.image = event.image
                         cdEvent.descriptionEvent = event.descriptionEvent
