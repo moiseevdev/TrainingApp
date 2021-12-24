@@ -13,7 +13,7 @@ struct EventsData: Codable {
 }
 
 class Event: Object, Codable {
-    @Persisted var eventID: Int
+    @Persisted var eventId: Int
     @Persisted var eventName: String
     @Persisted var image: String
     @Persisted var descriptionEvent: String

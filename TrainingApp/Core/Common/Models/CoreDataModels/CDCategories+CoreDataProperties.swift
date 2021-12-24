@@ -1,5 +1,5 @@
 //
-//  CDCategories+CoreDataProperties.swift
+//  CDCategory+CoreDataProperties.swift
 //  
 //
 //  Created by Андрей Моисеев on 13.11.2021.
@@ -10,19 +10,19 @@ import Foundation
 import CoreData
 
 
-extension CDCategories {
+extension CDCategory {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<CDCategories> {
-        return NSFetchRequest<CDCategories>(entityName: "CDCategories")
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<CDCategory> {
+        return NSFetchRequest<CDCategory>(entityName: "CDCategory")
     }
 
-    @NSManaged public var categoryID: Int16
+    @NSManaged public var categoryId: Int64
     @NSManaged public var categoryName: String?
     @NSManaged public var image: String?
     @NSManaged public var categories: NSSet?
     
-    var wrappedCategoryID: Int {
-        return Int(categoryID)
+    var wrappedCategoryId: Int {
+        return Int(categoryId)
     }
 
     var wrappedCategoryName: String {
@@ -33,8 +33,8 @@ extension CDCategories {
         return image ?? ""
     }
     
-    var friendsArray: [CDEvents] {
-        let set = categories as? Set<CDEvents> ?? []
+    var friendsArray: [CDEvent] {
+        let set = categories as? Set<CDEvent> ?? []
         return set.sorted {
             $0.wrappedEventName < $1.wrappedEventName
         }
@@ -42,13 +42,13 @@ extension CDCategories {
 }
 
 // MARK: Generated accessors for categories
-extension CDCategories {
+extension CDCategory {
 
     @objc(addCategoriesObject:)
-    @NSManaged public func addToCategories(_ value: CDEvents)
+    @NSManaged public func addToCategories(_ value: CDEvent)
 
     @objc(removeCategoriesObject:)
-    @NSManaged public func removeFromCategories(_ value: CDEvents)
+    @NSManaged public func removeFromCategories(_ value: CDEvent)
 
     @objc(addCategories:)
     @NSManaged public func addToCategories(_ values: NSSet)

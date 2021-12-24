@@ -11,15 +11,13 @@ final class CharityEventViewController: UIViewController {
 
     var categoryId: Int?
     
-    private var networkService = NetworkService()
+    private var networkService = URLSessionService()
     private var dataBase = DataBaseAdapter.dataBase
     
     private var events: [EventModel] = [] {
         didSet {
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-                self.hideActivityIndicator()
-            }
+            self.collectionView.reloadData()
+            self.hideActivityIndicator()
         }
     }
 
@@ -46,11 +44,18 @@ final class CharityEventViewController: UIViewController {
         setupCollectionView()
         setupSegmentedcontrol()
         showActivityIndicator()
-        
-        networkService.fethEvents { result in
+        fetchEvents()
+    }
+}
+
+// MARK: - Private methods
+private extension CharityEventViewController {
+    
+    func fetchEvents() {
+        networkService.fethEvents { [weak self] result in
             switch result {
             case .success(let networkResponse):
-                self.events = networkResponse.map({ EventModel(eventID: $0.eventID,
+                self?.events = networkResponse.map({ EventModel(eventId: $0.eventId,
                                                                eventName: $0.eventName,
                                                                image: $0.image,
                                                                descriptionEvent: $0.descriptionEvent,
@@ -65,20 +70,19 @@ final class CharityEventViewController: UIViewController {
                                                                description2: $0.description2,
                                                                website: $0.website) })
             case .failure:
-                self.dataBase.getEvents { result in
+                self?.dataBase.getEvents { result in
                     switch result {
                     case .success(let coredataResponse):
-                        self.events = coredataResponse
-                    case .failure(let error):
-                        print(error.localizedDescription)
+                        self?.events = coredataResponse
+                    case .failure:
+                        self?.showErrorAlert()
                     }
                 }
             }
         }
-    
     }
     
-    private func showActivityIndicator() {
+    func showActivityIndicator() {
         collectionView.isHidden = true
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
@@ -93,7 +97,7 @@ final class CharityEventViewController: UIViewController {
         collectionView.isHidden = false
     }
     
-    private func setupNavigationBar() {
+    func setupNavigationBar() {
         title = Strings.childrens
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: backButtonImage,
                                                            style: .plain,
@@ -105,14 +109,14 @@ final class CharityEventViewController: UIViewController {
                                                             action: nil)
     }
     
-    private func setupCollectionView() {
+    func setupCollectionView() {
         collectionView.register(UINib(nibName: "CharityEventViewCell", bundle: nil), forCellWithReuseIdentifier: "CharityEventViewCell")
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.backgroundColor = CustomColors.lightGrey
     }
     
-    private func setupSegmentedcontrol() {
+    func setupSegmentedcontrol() {
         segmentedControl.backgroundColor = UIColor.white
         segmentedControl.layer.borderColor = CustomColors.greenColor.cgColor
         segmentedControl.selectedSegmentTintColor = CustomColors.greenColor
@@ -125,10 +129,15 @@ final class CharityEventViewController: UIViewController {
         segmentedControl.setTitleTextAttributes(titleTextAttributes1, for:.selected)
     }
     
-    @objc private func popViewController() {
+    func showErrorAlert() {
+        let alert = UIAlertController(title: "Error", message: "Failed to get data", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    @objc func popViewController() {
         navigationController?.popViewController(animated: true)
     }
-
 }
 
 // MARK: - UICollectionViewDataSource
@@ -172,9 +181,11 @@ extension CharityEventViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let events = events[indexPath.item]
-        guard let eventID = events.eventID else { return }
+        guard let eventId = events.eventId else {
+            return
+        }
         let eventDetailsVC = EventDetailsViewController()
-        eventDetailsVC.eventId = eventID
+        eventDetailsVC.eventId = eventId
         navigationController?.pushViewController(eventDetailsVC, animated: true)
     }
     

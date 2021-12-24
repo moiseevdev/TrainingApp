@@ -8,17 +8,15 @@
 import Foundation
 import RealmSwift
 
-class RealmAdapter {
+class RealmAdapter: Databaseing {
     
     var realmService = RealmService()
-    var categories: Results<Categor>!
-    var events: Results<Event>!
     
     func getCategories(_ completion: (Result<[CategoryModel], Error>) -> Void) {
         let modelCategories = DataFromFile.modelCategories
         realmService.saveCategoriesModel(model: modelCategories!)
-        categories = self.realmService.localRealm.objects(Categor.self)
-        let castResults = Array(self.categories).map({ CategoryModel(categoryID: Int($0.categoryID),
+        categories = realmService.localRealm.objects(Categor.self)
+        let castResults = Array(self.categories).map({ CategoryModel(categoryId: Int($0.categoryId),
                                                                      categoryName: $0.categoryName,
                                                                      image: $0.image) })
         completion(.success(castResults))
@@ -27,8 +25,8 @@ class RealmAdapter {
     func getEvents(_ completion: (Result<[EventModel], Error>) -> Void) {
         let modelEvents = DataFromFile.modelEvents
         realmService.saveEventsModel(model: modelEvents!)
-        events = self.realmService.localRealm.objects(Event.self)
-        let castResults = Array(self.events).map({ EventModel(eventID: Int($0.eventID),
+        events = realmService.localRealm.objects(Event.self)
+        let castResults = Array(self.events).map({ EventModel(eventId: Int($0.eventId),
                                                                eventName: $0.eventName,
                                                                image: $0.image,
                                                                descriptionEvent: $0.descriptionEvent,

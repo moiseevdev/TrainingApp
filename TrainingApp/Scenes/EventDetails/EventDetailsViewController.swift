@@ -11,15 +11,13 @@ final class EventDetailsViewController: UIViewController {
     
     var eventId: Int?
     
-    private var networkService = NetworkService()
+    private var networkService = URLSessionService()
     private var dataBase = DataBaseAdapter.dataBase
     
     private var events: [EventModel] = [] {
         didSet {
-            DispatchQueue.main.async {
-                self.fetchData()
-                self.hideActivityIndicator()
-            }
+            self.setuphData()
+            self.hideActivityIndicator()
         }
     }
     
@@ -52,7 +50,7 @@ final class EventDetailsViewController: UIViewController {
         titleNameLabel.textColor = CustomColors.blueGrey
         setupNavigationController()
         showtActivityIndicator()
-        setupData()
+        fethEvents()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -60,7 +58,13 @@ final class EventDetailsViewController: UIViewController {
         tabBarController?.tabBar.isHidden = true
     }
     
-    private func showtActivityIndicator() {
+    
+}
+
+// MARK: - Private methods
+private extension EventDetailsViewController {
+    
+    func showtActivityIndicator() {
         scrollView.isHidden = true
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
@@ -68,18 +72,12 @@ final class EventDetailsViewController: UIViewController {
         activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
-    
-    private func hideActivityIndicator() {
-        activityIndicator.isHidden = true
-        activityIndicator.stopAnimating()
-        scrollView.isHidden = false
-    }
 
-    private func setupData() {
-        networkService.fethEvents { result in
+    func fethEvents() {
+        networkService.fethEvents { [weak self] result in
             switch result {
             case .success(let networkResponse):
-                self.events = networkResponse.map({ EventModel(eventID: $0.eventID,
+                self?.events = networkResponse.map({ EventModel(eventId: $0.eventId,
                                                                eventName: $0.eventName,
                                                                image: $0.image,
                                                                descriptionEvent: $0.descriptionEvent,
@@ -94,19 +92,19 @@ final class EventDetailsViewController: UIViewController {
                                                                description2: $0.description2,
                                                                website: $0.website) })
             case .failure:
-                self.dataBase.getEvents { result in
+                self?.dataBase.getEvents { result in
                     switch result {
                     case .success(let coredataResponse):
-                        self.events = coredataResponse
-                    case .failure(let error):
-                        print(error.localizedDescription)
+                        self?.events = coredataResponse
+                    case .failure:
+                        self?.showErrorAlert()
                     }
                 }
             }
         }
     }
     
-    private func fetchData() {
+    func setuphData() {
         title = events[eventId ?? 1].eventName
         titleNameLabel.text = events[eventId ?? 1].eventName
         timeLeftLabel.text = events[eventId ?? 1].timeLeft
@@ -119,7 +117,13 @@ final class EventDetailsViewController: UIViewController {
         secondDescriptionLabel.text = events[eventId ?? 1].description2
     }
     
-    private func setupNavigationController() {
+    func hideActivityIndicator() {
+        activityIndicator.isHidden = true
+        activityIndicator.stopAnimating()
+        scrollView.isHidden = false
+    }
+    
+    func setupNavigationController() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: backButtonImage,
                                                            style: .plain,
                                                            target: self,
@@ -130,7 +134,13 @@ final class EventDetailsViewController: UIViewController {
                                                             action: nil)
     }
     
-    @objc private func popViewController() {
+    func showErrorAlert() {
+        let alert = UIAlertController(title: "Error", message: "Failed to get data", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    @objc func popViewController() {
         navigationController?.popViewController(animated: true)
         tabBarController?.tabBar.isHidden = false
     }

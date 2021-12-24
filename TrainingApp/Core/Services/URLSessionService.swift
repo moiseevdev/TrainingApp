@@ -7,20 +7,21 @@
 
 import Foundation
 
-class NetworkService {
+final class URLSessionService: Networkable {
     
     var baseURL = "https://trainingapp-d0f45-default-rtdb.europe-west1.firebasedatabase.app/.json"
     
     func fethCategories(_ completion: @escaping (Result<[Categor], Error>) -> Void) {
         guard let url = URL(string: baseURL) else { return }
-        
+
         let request = URLRequest(url: url)
-        
+
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            if let data = data, let modell = try? JSONDecoder().decode(CategoriesData.self, from: data) {
-                completion(.success(modell.categories))
+            if let data = data, let model = try? JSONDecoder().decode(CategoriesData.self, from: data) {
+                DispatchQueue.main.async {
+                    completion(.success(model.categories))
+                }
             } else {
-                print("error")
                 completion(.failure(NSError()))
             }
         }
@@ -29,14 +30,15 @@ class NetworkService {
     
     func fethEvents(_ completion: @escaping (Result<[Event], Error>) -> Void) {
         guard let url = URL(string: baseURL) else { return }
-        
+
         let request = URLRequest(url: url)
-        
+
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            if let data = data, let modell = try? JSONDecoder().decode(EventsData.self, from: data) {
-                completion(.success(modell.events))
+            if let data = data, let model = try? JSONDecoder().decode(EventsData.self, from: data) {
+                DispatchQueue.main.async {
+                    completion(.success(model.events))
+                }
             } else {
-                print("error")
                 completion(.failure(NSError()))
             }
         }

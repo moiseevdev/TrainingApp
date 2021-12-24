@@ -7,23 +7,15 @@
 
 import UIKit
 
-struct ModelTest {
-    let categoryID: Int
-    let categoryName: String
-    let image: String
-}
-
 final class CategoriesViewController: UIViewController {
     
-    private var networkService = NetworkService()
+    private var networkService = NetworkService.network
     private var dataBase = DataBaseAdapter.dataBase
 
     var categories: [CategoryModel] = [] {
         didSet {
-            DispatchQueue.main.async {
-                self.categoriesCollectionView.reloadData()
-                self.hideActivityIndicator()
-            }
+            self.categoriesCollectionView.reloadData()
+            self.hideActivityIndicator()
         }
     }
 
@@ -48,28 +40,34 @@ final class CategoriesViewController: UIViewController {
         setupNavigitionBar()
         setupCollectionView()
         showActivityIndicator()
-        
-        networkService.fethCategories { result in
+        fethCategories()
+    }
+}
+
+// MARK: - Private methods
+private extension CategoriesViewController {
+    
+    func fethCategories() {
+        networkService.fethCategories { [weak self] result in
             switch result {
             case .success(let networkResponse):
-                self.categories = networkResponse.map({ CategoryModel(categoryID: Int($0.categoryID),
+                self?.categories = networkResponse.map({ CategoryModel(categoryId: Int($0.categoryId),
                                                                       categoryName: $0.categoryName,
                                                                       image: $0.image) })
             case .failure:
-                self.dataBase.getCategories { result in
+                self?.dataBase.getCategories { result in
                     switch result {
                     case .success(let coredataResponse):
-                        self.categories = coredataResponse
-                    case .failure(let error):
-                        print(error.localizedDescription)
+                        self?.categories = coredataResponse
+                    case .failure:
+                        self?.showErrorAlert()
                     }
                 }
             }
         }
-
     }
     
-    private func showActivityIndicator() {
+    func showActivityIndicator() {
         categoriesCollectionView.isHidden = true
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
@@ -98,6 +96,11 @@ final class CategoriesViewController: UIViewController {
         categoriesCollectionView.delegate = self
     }
     
+    func showErrorAlert() {
+        let alert = UIAlertController(title: "Error", message: "Failed to get data", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
 }
 
 // MARK: - UICollectionViewDataSource
@@ -143,10 +146,12 @@ extension CategoriesViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let categories = categories[indexPath.item]
-        guard let categoryID = categories.categoryID else { return }
+        let category = categories[indexPath.item]
+        guard let categoryId = category.categoryId else {
+            return
+        }
         let categoryVC = CharityEventViewController()
-        categoryVC.categoryId = categoryID
+        categoryVC.categoryId = categoryId
         navigationController?.pushViewController(categoryVC, animated: true)
     }
 }

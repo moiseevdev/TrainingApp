@@ -13,7 +13,7 @@ struct CategoriesData: Codable {
 }
 
 class Categor: Object, Codable {
-    @Persisted var categoryID: Int
+    @Persisted var categoryId: Int
     @Persisted var categoryName: String
     @Persisted var image: String
 }

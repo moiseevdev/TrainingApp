@@ -1,20 +1,14 @@
 //
-//  NetworkModel.swift
+//  EventModel.swift
 //  TrainingApp
 //
-//  Created by Андрей Моисеев on 22.12.2021.
+//  Created by Андрей Моисеев on 23.12.2021.
 //
 
 import Foundation
 
-struct CategoryModel: Codable {
-    let categoryID: Int?
-    let categoryName: String?
-    let image: String?
-}
-
 struct EventModel: Codable {
-    let eventID: Int?
+    let eventId: Int?
     let eventName: String?
     let image: String?
     let descriptionEvent: String?
