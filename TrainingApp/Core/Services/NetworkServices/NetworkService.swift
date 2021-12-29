@@ -10,8 +10,6 @@ import Foundation
 // MARK: - Networkable
 protocol Networkable {
     
-    var baseURL: String { get }
-    
     func fethCategories(_ completion: @escaping (Result<[Categor], Error>) -> Void)
     func fethEvents(_ completion: @escaping (Result<[Event], Error>) -> Void)
 }
@@ -19,5 +17,6 @@ protocol Networkable {
 // MARK: - NetworkService
 final class NetworkService {
     
-    static var network: Networkable = URLSessionService()
+    // Choice of network layer: URLSession, Alamofire or Moya
+    static var network: Networkable = MoyaService()
 }

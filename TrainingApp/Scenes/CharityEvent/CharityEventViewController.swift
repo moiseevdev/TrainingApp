@@ -11,7 +11,7 @@ final class CharityEventViewController: UIViewController {
 
     var categoryId: Int?
     
-    private var networkService = URLSessionService()
+    private var networkService = NetworkService.network
     private var dataBase = DataBaseAdapter.dataBase
     
     private var events: [EventModel] = [] {
@@ -180,8 +180,8 @@ extension CharityEventViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let events = events[indexPath.item]
-        guard let eventId = events.eventId else {
+        let event = events[indexPath.item]
+        guard let eventId = event.eventId else {
             return
         }
         let eventDetailsVC = EventDetailsViewController()

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ReadJSONFromFile {
+final class ReadJSONFromFile {
     
     func readJSON<T: Codable>(fileName: String, type: T.Type) -> T? {
         if let url = Bundle.main.url(forResource: fileName, withExtension: "json") {

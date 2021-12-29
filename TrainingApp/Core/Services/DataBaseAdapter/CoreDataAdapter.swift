@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class CoreDataAdapter: Databaseing {
+class CoreDataAdapter: Databaseing {
     
     var coreDataService = CoreDataService()
 

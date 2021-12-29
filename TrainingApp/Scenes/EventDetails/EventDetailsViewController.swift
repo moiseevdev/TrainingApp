@@ -11,7 +11,7 @@ final class EventDetailsViewController: UIViewController {
     
     var eventId: Int?
     
-    private var networkService = URLSessionService()
+    private var networkService = NetworkService.network
     private var dataBase = DataBaseAdapter.dataBase
     
     private var events: [EventModel] = [] {
