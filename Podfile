@@ -8,5 +8,7 @@ target 'TrainingApp' do
   # Pods for TrainingApp
   pod 'Alamofire'
   pod 'RealmSwift'
+  pod 'Kingfisher'
+  pod 'Moya'
 
 end

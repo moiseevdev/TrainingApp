@@ -9,7 +9,15 @@ import UIKit
 
 final class CategoriesViewController: UIViewController {
     
+    private var networkService = NetworkService.network
     private var dataBase = DataBaseAdapter.dataBase
+
+    var categories: [CategoryModel] = [] {
+        didSet {
+            self.categoriesCollectionView.reloadData()
+            self.hideActivityIndicator()
+        }
+    }
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var categoriesCollectionView: UICollectionView!
@@ -32,11 +40,34 @@ final class CategoriesViewController: UIViewController {
         setupNavigitionBar()
         setupCollectionView()
         showActivityIndicator()
-        saveCategories()
-        hideActivityIndicator()
+        fethCategories()
+    }
+}
+
+// MARK: - Private methods
+private extension CategoriesViewController {
+    
+    func fethCategories() {
+        networkService.fethCategories { [weak self] result in
+            switch result {
+            case .success(let networkResponse):
+                self?.categories = networkResponse.map({ CategoryModel(categoryId: Int($0.categoryId),
+                                                                      categoryName: $0.categoryName,
+                                                                      image: $0.image) })
+            case .failure:
+                self?.dataBase.getCategories { result in
+                    switch result {
+                    case .success(let coredataResponse):
+                        self?.categories = coredataResponse
+                    case .failure:
+                        self?.showErrorAlert()
+                    }
+                }
+            }
+        }
     }
     
-    private func showActivityIndicator() {
+    func showActivityIndicator() {
         categoriesCollectionView.isHidden = true
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
@@ -50,15 +81,13 @@ final class CategoriesViewController: UIViewController {
         activityIndicator.stopAnimating()
         categoriesCollectionView.isHidden = false
     }
-
-    private func saveCategories() {
-        dataBase.saveCategories()
-        categoriesCollectionView.reloadData()
-    }
     
     func setupNavigitionBar() {
         navigationItem.title = Strings.helpNavBar
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: backButtonImage, style: .plain, target: nil, action: nil)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: backButtonImage,
+                                                           style: .plain,
+                                                           target: nil,
+                                                           action: nil)
     }
     
     func setupCollectionView() {
@@ -67,20 +96,25 @@ final class CategoriesViewController: UIViewController {
         categoriesCollectionView.delegate = self
     }
     
+    func showErrorAlert() {
+        let alert = UIAlertController(title: "Error", message: "Failed to get data", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
 }
 
 // MARK: - UICollectionViewDataSource
 extension CategoriesViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return dataBase.categories.count
+        return categories.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoriesCell", for: indexPath) as? CategoriesCell {
-            let categories = dataBase.categories[indexPath.item]
+            let categories = categories[indexPath.item]
             cell.nameLabel.text = categories.categoryName
-            cell.categoryImage.image = UIImage(named: categories.image ?? "test")
+            cell.categoryImage.setImage(imageUrl: categories.image ?? "test")
             cell.backgroundColor = CustomColors.lightGrey2
             return cell
         }
@@ -112,10 +146,12 @@ extension CategoriesViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let categories = dataBase.categories[indexPath.item]
-        let categoryID = categories.categoryID
+        let category = categories[indexPath.item]
+        guard let categoryId = category.categoryId else {
+            return
+        }
         let categoryVC = CharityEventViewController()
-        categoryVC.categoryId = Int(categoryID)
+        categoryVC.categoryId = categoryId
         navigationController?.pushViewController(categoryVC, animated: true)
     }
 }

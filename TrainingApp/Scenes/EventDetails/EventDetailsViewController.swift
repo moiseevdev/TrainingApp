@@ -9,9 +9,17 @@ import UIKit
 
 final class EventDetailsViewController: UIViewController {
     
+    var eventId: Int?
+    
+    private var networkService = NetworkService.network
     private var dataBase = DataBaseAdapter.dataBase
     
-    var eventId: Int?
+    private var events: [EventModel] = [] {
+        didSet {
+            self.setuphData()
+            self.hideActivityIndicator()
+        }
+    }
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var titleNameLabel: UILabel!
@@ -42,8 +50,7 @@ final class EventDetailsViewController: UIViewController {
         titleNameLabel.textColor = CustomColors.blueGrey
         setupNavigationController()
         showtActivityIndicator()
-        fetchData()
-        hideActivityIndicator()
+        fethEvents()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -51,7 +58,13 @@ final class EventDetailsViewController: UIViewController {
         tabBarController?.tabBar.isHidden = true
     }
     
-    private func showtActivityIndicator() {
+    
+}
+
+// MARK: - Private methods
+private extension EventDetailsViewController {
+    
+    func showtActivityIndicator() {
         scrollView.isHidden = true
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
@@ -59,27 +72,58 @@ final class EventDetailsViewController: UIViewController {
         activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
+
+    func fethEvents() {
+        networkService.fethEvents { [weak self] result in
+            switch result {
+            case .success(let networkResponse):
+                self?.events = networkResponse.map({ EventModel(eventId: $0.eventId,
+                                                               eventName: $0.eventName,
+                                                               image: $0.image,
+                                                               descriptionEvent: $0.descriptionEvent,
+                                                               timeLeft: $0.timeLeft,
+                                                               address: $0.address,
+                                                               number: $0.number,
+                                                               email: $0.email,
+                                                               image1: $0.image1,
+                                                               image2: $0.image2,
+                                                               image3: $0.image3,
+                                                               description1: $0.description1,
+                                                               description2: $0.description2,
+                                                               website: $0.website) })
+            case .failure:
+                self?.dataBase.getEvents { result in
+                    switch result {
+                    case .success(let coredataResponse):
+                        self?.events = coredataResponse
+                    case .failure:
+                        self?.showErrorAlert()
+                    }
+                }
+            }
+        }
+    }
     
-    private func hideActivityIndicator() {
+    func setuphData() {
+        title = events[eventId ?? 1].eventName
+        titleNameLabel.text = events[eventId ?? 1].eventName
+        timeLeftLabel.text = events[eventId ?? 1].timeLeft
+        addressLabel.text = events[eventId ?? 1].address
+        numberLabel.text = events[eventId ?? 1].number
+        firstImageLabel.setImage(imageUrl: events[eventId ?? 1].image1 ?? "test")
+        secondImageLabel.setImage(imageUrl: events[eventId ?? 1].image2 ?? "test")
+        thirdImageLabel.setImage(imageUrl: events[eventId ?? 1].image3 ?? "test")
+        firstDescriptionLabel.text = events[eventId ?? 1].description1
+        secondDescriptionLabel.text = events[eventId ?? 1].description2
+    }
+    
+    func hideActivityIndicator() {
         activityIndicator.isHidden = true
         activityIndicator.stopAnimating()
         scrollView.isHidden = false
     }
-
-    private func fetchData() {
-        titleNameLabel.text = dataBase.events[self.eventId ?? 1].eventName
-        timeLeftLabel.text = dataBase.events[self.eventId ?? 1].timeLeft
-        addressLabel.text = dataBase.events[self.eventId ?? 1].address
-        numberLabel.text = dataBase.events[self.eventId ?? 1].number
-        firstImageLabel.image = UIImage(named: "\(dataBase.events[self.eventId ?? 1].image1 ?? "test")")
-        secondImageLabel.image = UIImage(named: "\(dataBase.events[self.eventId ?? 1].image2 ?? "test")")
-        thirdImageLabel.image = UIImage(named: "\(dataBase.events[self.eventId ?? 1].image3 ?? "test")")
-        firstDescriptionLabel.text = dataBase.events[self.eventId ?? 1].description1
-        secondDescriptionLabel.text = dataBase.events[self.eventId ?? 1].description2
-    }
     
-    private func setupNavigationController() {
-        title = dataBase.events[eventId!].eventName
+    func setupNavigationController() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: backButtonImage,
                                                            style: .plain,
                                                            target: self,
@@ -90,7 +134,13 @@ final class EventDetailsViewController: UIViewController {
                                                             action: nil)
     }
     
-    @objc private func popViewController() {
+    func showErrorAlert() {
+        let alert = UIAlertController(title: "Error", message: "Failed to get data", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    @objc func popViewController() {
         navigationController?.popViewController(animated: true)
         tabBarController?.tabBar.isHidden = false
     }

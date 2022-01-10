@@ -16,17 +16,22 @@ class RealmService {
     var events: Results<Event>!
     
     func saveCategoriesModel(model: [Categor]) {
-        try! localRealm.write {
-            localRealm.deleteAll()
-            localRealm.add(model)
+        DispatchQueue.main.async {
+            let localRealm = try! Realm()
+            try! localRealm.write {
+                localRealm.deleteAll()
+                localRealm.add(model)
+            }
         }
     }
     
     func saveEventsModel(model: [Event]) {
-        try! localRealm.write {
-            localRealm.deleteAll()
-            localRealm.add(model)
+        DispatchQueue.main.async {
+            let localRealm = try! Realm()
+            try! localRealm.write {
+                localRealm.deleteAll()
+                localRealm.add(model)
+            }
         }
     }
-    
 }
