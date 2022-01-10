@@ -9,8 +9,8 @@ import Foundation
 
 // MARK: - Databaseing
 protocol Databaseing {
-    func getCategories(_ completion: (Result<[CategoryModel], Error>) -> Void)
-    func getEvents(_ completion: (Result<[EventModel], Error>) -> Void)
+    func getCategories(_ completion: @escaping (Result<[CategoryModel], Error>) -> Void)
+    func getEvents(_ completion: @escaping (Result<[EventModel], Error>) -> Void)
 }
 
 class DataBaseAdapter {

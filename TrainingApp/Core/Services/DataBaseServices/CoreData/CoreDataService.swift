@@ -65,11 +65,12 @@ final class CoreDataService {
     }
     
     func saveCategories(modelCategories: [Categor]?) {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
             do {
                 let fetchRequest = self.fetchRequestCategories
                 let context = self.getContext()
-                let categories = try context.fetch(fetchRequest)
+                let categories = try self.context.fetch(fetchRequest)
                 if categories.count == 0 {
                     context.performAndWait {
                         modelCategories?.forEach { category in
@@ -94,7 +95,8 @@ final class CoreDataService {
     }
     
     func saveEvents(modelEvents: [Event]?) {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
             do {
                 let fetchRequest = self.fetchRequestEvents
                 let context = self.getContext()

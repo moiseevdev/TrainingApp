@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		34EB32EF4DA52F259F98F2D5 /* Pods_TrainingApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E17DDB2A8C221BDF782BFC /* Pods_TrainingApp.framework */; };
+		E92653DB278B341900BBB9F4 /* ObtainMoya.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92653DA278B341800BBB9F4 /* ObtainMoya.swift */; };
 		E9269C27276CB0A200D3CCDD /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9269C26276CB0A200D3CCDD /* Strings.swift */; };
 		E9AA620A277A66CC000ECF76 /* MoyaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AA6209277A66CC000ECF76 /* MoyaService.swift */; };
 		E9AF61F7276E3C9D00C68A28 /* URLSessionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF61F6276E3C9D00C68A28 /* URLSessionService.swift */; };
@@ -61,6 +62,7 @@
 		18E17DDB2A8C221BDF782BFC /* Pods_TrainingApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TrainingApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CBBE7C3D85099E00FC20ECC /* Pods-TrainingApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrainingApp.release.xcconfig"; path = "Target Support Files/Pods-TrainingApp/Pods-TrainingApp.release.xcconfig"; sourceTree = "<group>"; };
 		9E4B825E94B75E893168786C /* Pods-TrainingApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrainingApp.debug.xcconfig"; path = "Target Support Files/Pods-TrainingApp/Pods-TrainingApp.debug.xcconfig"; sourceTree = "<group>"; };
+		E92653DA278B341800BBB9F4 /* ObtainMoya.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObtainMoya.swift; sourceTree = "<group>"; };
 		E9269C26276CB0A200D3CCDD /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		E9AA6209277A66CC000ECF76 /* MoyaService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaService.swift; sourceTree = "<group>"; };
 		E9AF61F6276E3C9D00C68A28 /* URLSessionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionService.swift; sourceTree = "<group>"; };
@@ -141,6 +143,24 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E92653DC278B3C4300BBB9F4 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				E9BB3785276B70FC001CA59A /* CoreDataService.swift */,
+				E9BB378C276B72A2001CA59A /* CoreDataAdapter.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		E92653DD278B3C4E00BBB9F4 /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				E9BB3787276B71F6001CA59A /* RealmService.swift */,
+				E9BB378E276B72A2001CA59A /* RealmAdapter.swift */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
 		E9269C25276CB08B00D3CCDD /* Strings */ = {
 			isa = PBXGroup;
 			children = (
@@ -173,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				E9AA6209277A66CC000ECF76 /* MoyaService.swift */,
+				E92653DA278B341800BBB9F4 /* ObtainMoya.swift */,
 			);
 			path = Moya;
 			sourceTree = "<group>";
@@ -372,11 +393,9 @@
 		E9BB3768276B6D86001CA59A /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				E9AA6207277A5CEF000ECF76 /* NetworkServices */,
 				E9AA6206277A5C87000ECF76 /* DataFromFileServices */,
-				E9BB378B276B7295001CA59A /* DataBaseAdapter */,
-				E9BB3785276B70FC001CA59A /* CoreDataService.swift */,
-				E9BB3787276B71F6001CA59A /* RealmService.swift */,
+				E9AA6207277A5CEF000ECF76 /* NetworkServices */,
+				E9BB378B276B7295001CA59A /* DataBaseServices */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -410,14 +429,14 @@
 			path = CoreDataModels;
 			sourceTree = "<group>";
 		};
-		E9BB378B276B7295001CA59A /* DataBaseAdapter */ = {
+		E9BB378B276B7295001CA59A /* DataBaseServices */ = {
 			isa = PBXGroup;
 			children = (
+				E92653DC278B3C4300BBB9F4 /* CoreData */,
+				E92653DD278B3C4E00BBB9F4 /* Realm */,
 				E9BB378D276B72A2001CA59A /* DataBaseAdapter.swift */,
-				E9BB378C276B72A2001CA59A /* CoreDataAdapter.swift */,
-				E9BB378E276B72A2001CA59A /* RealmAdapter.swift */,
 			);
-			path = DataBaseAdapter;
+			path = DataBaseServices;
 			sourceTree = "<group>";
 		};
 		E9BB3792276B7308001CA59A /* CharityEventViewCell */ = {
@@ -580,6 +599,7 @@
 				E9BB3764276B6C38001CA59A /* EventsData.swift in Sources */,
 				E9BB3783276B70CA001CA59A /* CDEvents+CoreDataClass.swift in Sources */,
 				E9BB3791276B72A2001CA59A /* RealmAdapter.swift in Sources */,
+				E92653DB278B341900BBB9F4 /* ObtainMoya.swift in Sources */,
 				E9AA620A277A66CC000ECF76 /* MoyaService.swift in Sources */,
 				E9BB374A276B557A001CA59A /* CustomFonts.swift in Sources */,
 				E9AF61F7276E3C9D00C68A28 /* URLSessionService.swift in Sources */,

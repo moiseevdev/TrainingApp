@@ -8,44 +8,9 @@
 import Foundation
 import Moya
 
-public enum TestMoya {
-    case category
-    case event
-}
-
-extension TestMoya: TargetType {
-    public var baseURL: URL {
-        URL(string: "https://moiseev.dev/api/trainingapp")!
-    }
-
-    public var path: String {
-        switch self {
-        case .category: return "/categories.json"
-        case .event: return "/events.json"
-        }
-    }
-
-    public var method: Moya.Method {
-        switch self {
-        case .category: return .get
-        case .event: return .get
-        }
-    }
-
-    public var task: Task {
-        .requestPlain
-    }
-
-    public var headers: [String : String]? {
-        return ["Content-Type": "application/json"]
-    }
-    
-}
-
-
 class MoyaService: Networkable {
     
-    let provider = MoyaProvider<TestMoya>()
+    let provider = MoyaProvider<ObtainMoya>()
     
     func fethCategories(_ completion: @escaping (Result<[Categor], Error>) -> Void) {
         provider.request(.category) { result in

@@ -11,17 +11,22 @@ class CoreDataAdapter: Databaseing {
     
     var coreDataService = CoreDataService()
 
-    func getCategories(_ completion: (Result<[CategoryModel], Error>) -> Void) {
-        let categories = coreDataService.fetchDataCDCategories()
-        let castResults = categories.map({ CategoryModel(categoryId: Int($0.categoryId),
+    func getCategories(_ completion: @escaping (Result<[CategoryModel], Error>) -> Void) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            let categories = self.coreDataService.fetchDataCDCategories()
+            let castResults = categories.map({ CategoryModel(categoryId: Int($0.categoryId),
                                                               categoryName: $0.categoryName,
                                                               image: $0.image) })
-        completion(.success(castResults))
+            completion(.success(castResults))
+        }
     }
 
-    func getEvents(_ completion: (Result<[EventModel], Error>) -> Void) {
-        let events = coreDataService.fetchDataCDEvents()
-        let castResults = events.map({ EventModel(eventId: Int($0.eventId),
+    func getEvents(_ completion: @escaping (Result<[EventModel], Error>) -> Void) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            let events = self.coreDataService.fetchDataCDEvents()
+            let castResults = events.map({ EventModel(eventId: Int($0.eventId),
                                                         eventName: $0.eventName,
                                                         image: $0.image,
                                                         descriptionEvent: $0.descriptionEvent,
@@ -35,7 +40,8 @@ class CoreDataAdapter: Databaseing {
                                                         description1: $0.description1,
                                                         description2: $0.description2,
                                                         website: $0.website) })
-        completion(.success(castResults))
+            completion(.success(castResults))
+        }
     }
 
 }
