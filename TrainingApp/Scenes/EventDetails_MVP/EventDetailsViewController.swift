@@ -7,19 +7,17 @@
 
 import UIKit
 
+protocol EventDetailsViewProtocol: AnyObject {
+    func setuphData(data: [EventModel])
+    func hideActivityIndicator()
+    func showErrorAlert()
+}
+
 final class EventDetailsViewController: UIViewController {
     
     var eventId: Int?
     
-    private var networkService = NetworkService.network
-    private var dataBase = DataBaseAdapter.dataBase
-    
-    private var events: [EventModel] = [] {
-        didSet {
-            self.setuphData()
-            self.hideActivityIndicator()
-        }
-    }
+    var presenter: EventDetailsProtocol!
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var titleNameLabel: UILabel!
@@ -46,11 +44,14 @@ final class EventDetailsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter = EventDetailsPresenter()
         titleNameLabel.font = CustomFonts.OfficinasansextraboldsccFont21
         titleNameLabel.textColor = CustomColors.blueGrey
         setupNavigationController()
         showtActivityIndicator()
-        fethEvents()
+        presenter.fethEvents()
+        //presenter.setupData()
+        hideActivityIndicator()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -61,8 +62,7 @@ final class EventDetailsViewController: UIViewController {
     
 }
 
-// MARK: - Private methods
-private extension EventDetailsViewController {
+extension EventDetailsViewController: EventDetailsViewProtocol {
     
     func showtActivityIndicator() {
         scrollView.isHidden = true
@@ -73,48 +73,19 @@ private extension EventDetailsViewController {
         activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
 
-    func fethEvents() {
-        networkService.fethEvents { [weak self] result in
-            switch result {
-            case .success(let networkResponse):
-                self?.events = networkResponse.map({ EventModel(eventId: $0.eventId,
-                                                               eventName: $0.eventName,
-                                                               image: $0.image,
-                                                               descriptionEvent: $0.descriptionEvent,
-                                                               timeLeft: $0.timeLeft,
-                                                               address: $0.address,
-                                                               number: $0.number,
-                                                               email: $0.email,
-                                                               image1: $0.image1,
-                                                               image2: $0.image2,
-                                                               image3: $0.image3,
-                                                               description1: $0.description1,
-                                                               description2: $0.description2,
-                                                               website: $0.website) })
-            case .failure:
-                self?.dataBase.getEvents { result in
-                    switch result {
-                    case .success(let coredataResponse):
-                        self?.events = coredataResponse
-                    case .failure:
-                        self?.showErrorAlert()
-                    }
-                }
-            }
-        }
-    }
     
-    func setuphData() {
-        title = events[eventId ?? 1].eventName
-        titleNameLabel.text = events[eventId ?? 1].eventName
-        timeLeftLabel.text = events[eventId ?? 1].timeLeft
-        addressLabel.text = events[eventId ?? 1].address
-        numberLabel.text = events[eventId ?? 1].number
-        firstImageLabel.setImage(imageUrl: events[eventId ?? 1].image1 ?? "test")
-        secondImageLabel.setImage(imageUrl: events[eventId ?? 1].image2 ?? "test")
-        thirdImageLabel.setImage(imageUrl: events[eventId ?? 1].image3 ?? "test")
-        firstDescriptionLabel.text = events[eventId ?? 1].description1
-        secondDescriptionLabel.text = events[eventId ?? 1].description2
+    func setuphData(data: [EventModel]) {
+        print("test")
+        title = data[eventId ?? 1].eventName
+        titleNameLabel.text = data[eventId ?? 1].eventName
+        timeLeftLabel.text = data[eventId ?? 1].timeLeft
+        addressLabel.text = data[eventId ?? 1].address
+        numberLabel.text = data[eventId ?? 1].number
+        firstImageLabel.setImage(imageUrl: data[eventId ?? 1].image1 ?? "test")
+        secondImageLabel.setImage(imageUrl: data[eventId ?? 1].image2 ?? "test")
+        thirdImageLabel.setImage(imageUrl: data[eventId ?? 1].image3 ?? "test")
+        firstDescriptionLabel.text = data[eventId ?? 1].description1
+        secondDescriptionLabel.text = data[eventId ?? 1].description2
     }
     
     func hideActivityIndicator() {

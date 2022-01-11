@@ -8,19 +8,11 @@
 import UIKit
 
 final class CharityEventViewController: UIViewController {
-
+    
     var categoryId: Int?
     
-    private var networkService = NetworkService.network
-    private var dataBase = DataBaseAdapter.dataBase
+    private var viewModel: CharityEventViewModelProtocol!
     
-    private var events: [EventModel] = [] {
-        didSet {
-            self.collectionView.reloadData()
-            self.hideActivityIndicator()
-        }
-    }
-
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -40,47 +32,18 @@ final class CharityEventViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel = CharityEventViewModel()
+        viewModel.fetchEvents()
         setupNavigationBar()
         setupCollectionView()
         setupSegmentedcontrol()
         showActivityIndicator()
-        fetchEvents()
+        reloadCollectionViewData()
     }
 }
 
 // MARK: - Private methods
 private extension CharityEventViewController {
-    
-    func fetchEvents() {
-        networkService.fethEvents { [weak self] result in
-            switch result {
-            case .success(let networkResponse):
-                self?.events = networkResponse.map({ EventModel(eventId: $0.eventId,
-                                                               eventName: $0.eventName,
-                                                               image: $0.image,
-                                                               descriptionEvent: $0.descriptionEvent,
-                                                               timeLeft: $0.timeLeft,
-                                                               address: $0.address,
-                                                               number: $0.number,
-                                                               email: $0.email,
-                                                               image1: $0.image1,
-                                                               image2: $0.image2,
-                                                               image3: $0.image3,
-                                                               description1: $0.description1,
-                                                               description2: $0.description2,
-                                                               website: $0.website) })
-            case .failure:
-                self?.dataBase.getEvents { result in
-                    switch result {
-                    case .success(let coredataResponse):
-                        self?.events = coredataResponse
-                    case .failure:
-                        self?.showErrorAlert()
-                    }
-                }
-            }
-        }
-    }
     
     func showActivityIndicator() {
         collectionView.isHidden = true
@@ -95,6 +58,13 @@ private extension CharityEventViewController {
         activityIndicator.isHidden = true
         activityIndicator.stopAnimating()
         collectionView.isHidden = false
+    }
+    
+    func reloadCollectionViewData() {
+        viewModel?.reloadCollectionViewData = {
+            self.collectionView.reloadData()
+            self.hideActivityIndicator()
+        }
     }
     
     func setupNavigationBar() {
@@ -143,12 +113,12 @@ private extension CharityEventViewController {
 // MARK: - UICollectionViewDataSource
 extension CharityEventViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return events.count
+        return viewModel.numberOfRows()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CharityEventViewCell", for: indexPath) as? CharityEventViewCell {
-            let events = events[indexPath.item]
+            let events = viewModel.events[indexPath.item]
             cell.titleNameLabel.text = events.eventName
             cell.titleImage.setImage(imageUrl: events.image ?? "test")
             cell.descriptionEventLabel.text = events.descriptionEvent
@@ -180,7 +150,7 @@ extension CharityEventViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let event = events[indexPath.item]
+        let event = viewModel.events[indexPath.item]
         guard let eventId = event.eventId else {
             return
         }
