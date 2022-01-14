@@ -11,7 +11,7 @@ final class CharityEventViewController: UIViewController {
     
     var categoryId: Int?
     
-    private var viewModel: CharityEventViewModelProtocol!
+    var viewModel: CharityEventViewModelProtocol!
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -31,8 +31,7 @@ final class CharityEventViewController: UIViewController {
     }()
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        viewModel = CharityEventViewModel()
+        super.viewDidLoad()        
         viewModel.fetchEvents()
         setupNavigationBar()
         setupCollectionView()
@@ -117,14 +116,14 @@ extension CharityEventViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CharityEventViewCell", for: indexPath) as? CharityEventViewCell {
-            let events = viewModel.events[indexPath.item]
-            cell.titleNameLabel.text = events.eventName
-            cell.titleImage.setImage(imageUrl: events.image ?? "test")
-            cell.descriptionEventLabel.text = events.descriptionEvent
-            cell.timeLeftLabel.text = events.timeLeft
-            cell.backgroundColor = .white
-            return cell
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CharityEventViewCell.identifier, for: indexPath) as? CharityEventViewCell {
+            guard let viewModel = viewModel else {
+                return UICollectionViewCell()
+            }
+            let cellViewModel = viewModel.cellViewModel(forIndexPath: indexPath)
+            let collectionViewCell = cell
+            collectionViewCell.viewModel = cellViewModel
+            return collectionViewCell
         }
         return UICollectionViewCell()
     }
@@ -154,9 +153,8 @@ extension CharityEventViewController: UICollectionViewDelegateFlowLayout {
         guard let eventId = event.eventId else {
             return
         }
-        let eventDetailsVC = EventDetailsViewController()
-        eventDetailsVC.eventId = eventId
-        navigationController?.pushViewController(eventDetailsVC, animated: true)
+        let eventDetailsViewController = EventDetailsAssembly().configuredModule()
+        navigationController?.pushViewController(eventDetailsViewController, animated: true)
     }
     
 }

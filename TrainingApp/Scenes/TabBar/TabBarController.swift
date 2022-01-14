@@ -57,7 +57,7 @@ private extension TabBarController {
         searchViewController.tabBarItem.title = Strings.search
         searchViewController.tabBarItem.image = Images.magnifyingglass
         
-        let categoriesViewController = UINavigationController(rootViewController: CategoriesViewController())
+        let categoriesViewController = UINavigationController(rootViewController: CategoriesAssembly().configuredModule())
         guard let font = CustomFonts.OfficinasansextraboldsccFont21 else {
             return
         }

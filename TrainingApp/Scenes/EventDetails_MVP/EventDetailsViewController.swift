@@ -9,7 +9,6 @@ import UIKit
 
 protocol EventDetailsViewProtocol: AnyObject {
     func setuphData(data: [EventModel])
-    func hideActivityIndicator()
     func showErrorAlert()
 }
 
@@ -44,13 +43,10 @@ final class EventDetailsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter = EventDetailsPresenter()
-        titleNameLabel.font = CustomFonts.OfficinasansextraboldsccFont21
-        titleNameLabel.textColor = CustomColors.blueGrey
+        setupPresentationStyles()
         setupNavigationController()
         showtActivityIndicator()
         presenter.fethEvents()
-        //presenter.setupData()
         hideActivityIndicator()
     }
     
@@ -58,24 +54,11 @@ final class EventDetailsViewController: UIViewController {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = true
     }
-    
-    
 }
 
 extension EventDetailsViewController: EventDetailsViewProtocol {
     
-    func showtActivityIndicator() {
-        scrollView.isHidden = true
-        activityIndicator.isHidden = false
-        activityIndicator.startAnimating()
-        view.addSubview(activityIndicator)
-        activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-    }
-
-    
     func setuphData(data: [EventModel]) {
-        print("test")
         title = data[eventId ?? 1].eventName
         titleNameLabel.text = data[eventId ?? 1].eventName
         timeLeftLabel.text = data[eventId ?? 1].timeLeft
@@ -88,10 +71,34 @@ extension EventDetailsViewController: EventDetailsViewProtocol {
         secondDescriptionLabel.text = data[eventId ?? 1].description2
     }
     
+    func showErrorAlert() {
+        let alert = UIAlertController(title: "Error", message: "Failed to get data", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+}
+
+// MARK: - Private methods
+extension EventDetailsViewController {
+    
+    func showtActivityIndicator() {
+        scrollView.isHidden = true
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+        view.addSubview(activityIndicator)
+        activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+    }
+    
     func hideActivityIndicator() {
         activityIndicator.isHidden = true
         activityIndicator.stopAnimating()
         scrollView.isHidden = false
+    }
+    
+    func setupPresentationStyles() {
+        titleNameLabel.font = CustomFonts.OfficinasansextraboldsccFont21
+        titleNameLabel.textColor = CustomColors.blueGrey
     }
     
     func setupNavigationController() {
@@ -103,12 +110,6 @@ extension EventDetailsViewController: EventDetailsViewProtocol {
                                                             style: .plain,
                                                             target: nil,
                                                             action: nil)
-    }
-    
-    func showErrorAlert() {
-        let alert = UIAlertController(title: "Error", message: "Failed to get data", preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
     }
     
     @objc func popViewController() {

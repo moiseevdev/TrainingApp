@@ -12,12 +12,13 @@ protocol CharityEventViewModelProtocol {
     var reloadCollectionViewData: (() -> ())? { get set }
     func numberOfRows() -> Int
     func fetchEvents()
+    func cellViewModel(forIndexPath indexPath: IndexPath) -> CharityEventCellViewModelType?
 }
 
 final class CharityEventViewModel: CharityEventViewModelProtocol {
     
-    private var networkService = NetworkService.network
-    private var dataBase = DataBaseAdapter.dataBase
+    private var networkService: Networkable
+    private var dataBase: Databaseing
     
     var events: [EventModel] = [] {
         didSet {
@@ -27,8 +28,19 @@ final class CharityEventViewModel: CharityEventViewModelProtocol {
     
     var reloadCollectionViewData: (() -> ())?
     
+    init(networkService: Networkable,
+         dataBase: Databaseing) {
+        self.networkService = networkService
+        self.dataBase = dataBase
+    }
+    
     func numberOfRows() -> Int {
         return events.count
+    }
+    
+    func cellViewModel(forIndexPath indexPath: IndexPath) -> CharityEventCellViewModelType? {
+        let events = events[indexPath.item]
+        return CharityEventCellViewModel(events: events)
     }
     
     func fetchEvents() {

@@ -10,17 +10,26 @@ import Foundation
 protocol EventDetailsProtocol {
     var events: [EventModel] { get set }
     func fethEvents()
-    func setupData()
 }
 
-class EventDetailsPresenter {
-    
-    private var networkService = NetworkService.network
-    private var dataBase = DataBaseAdapter.dataBase
+final class EventDetailsPresenter {
     
     weak var viewController: EventDetailsViewProtocol!
     
-    var events: [EventModel] = []
+    private let networkService: Networkable
+    private let dataBase: Databaseing
+    
+    var events: [EventModel] = [] {
+        didSet {
+            viewController.setuphData(data: events)
+        }
+    }
+    
+    init(networkService: Networkable,
+         dataBase: Databaseing) {
+        self.networkService = networkService
+        self.dataBase = dataBase
+    }
 }
 
 extension EventDetailsPresenter: EventDetailsProtocol {
@@ -49,16 +58,10 @@ extension EventDetailsPresenter: EventDetailsProtocol {
                     case .success(let coredataResponse):
                         self?.events = coredataResponse
                     case .failure:
-                        print("error")
                         self?.viewController.showErrorAlert()
                     }
                 }
             }
-//            self?.viewController.setuphData(data: self!.events)
         }
-    }
-    
-    func setupData() {
-        viewController?.setuphData(data: events)
     }
 }
