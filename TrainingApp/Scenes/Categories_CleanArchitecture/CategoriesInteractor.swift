@@ -8,8 +8,7 @@
 import Foundation
 
 protocol CategoriesBusinessLogic {
-    func makeRequest(request: Categories.Model.Request.RequestType)
-    func setupData()
+    func makeRequest(request: CategoriesModel.Request.RequestType)
 }
 
 final class CategoriesInteractor {
@@ -18,37 +17,28 @@ final class CategoriesInteractor {
     private var networkService: Networkable
     private var dataBase: Databaseing
     
-    var categories: [CategoryModel] = [] {
-        didSet {
-            setupData()
-        }
-    }
-    
     init(networkService: Networkable,
          dataBase: Databaseing) {
         self.networkService = networkService
         self.dataBase = dataBase
     }
-    
 }
 
 extension CategoriesInteractor: CategoriesBusinessLogic {
     
-    func makeRequest(request: Categories.Model.Request.RequestType) {
+    func makeRequest(request: CategoriesModel.Request.RequestType) {
 
         switch request {
         case .getCategories:
             networkService.fethCategories { [weak self] result in
                 switch result {
                 case .success(let networkResponse):
-                    self?.categories = networkResponse.map({ CategoryModel(categoryId: Int($0.categoryId),
-                                                                           categoryName: $0.categoryName,
-                                                                           image: $0.image) })
+                    self?.presenter?.presentData(response: CategoriesModel.Response.ResponseType.presentNetworkResponse(categories: networkResponse))
                 case .failure:
                     self?.dataBase.getCategories { result in
                         switch result {
-                        case .success(let coredataResponse):
-                            self?.categories = coredataResponse
+                        case .success(let databaseResponse):
+                            self?.presenter?.presentData(response: CategoriesModel.Response.ResponseType.presentDatabaseResponse(categories: databaseResponse))
                         case .failure:
                             print("error")
                         }
@@ -56,9 +46,5 @@ extension CategoriesInteractor: CategoriesBusinessLogic {
                 }
             }
         }
-    }
-    
-    func setupData() {
-        presenter?.presentData(response: Categories.Model.Response.ResponseType.presentCategories(categories: categories))
     }
 }

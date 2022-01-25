@@ -21,7 +21,7 @@ final class EventDetailsPresenter {
     
     var events: [EventModel] = [] {
         didSet {
-            viewController.setuphData(data: events)
+            viewController.setupData(data: events)
         }
     }
     

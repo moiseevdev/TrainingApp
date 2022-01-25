@@ -8,7 +8,7 @@
 import UIKit
 
 protocol CategoriesDisplayLogic: AnyObject {
-  func displayData(viewModel: Categories.Model.ViewModel.ViewModelData)
+    func displayData(viewModel: CategoriesModel.ViewModel.ViewModelData)
 }
 
 final class CategoriesViewController: UIViewController {
@@ -40,14 +40,16 @@ final class CategoriesViewController: UIViewController {
         setupCollectionView()
         showActivityIndicator()
         interactor?.makeRequest(request: .getCategories)
-        interactor?.setupData()
     }
 }
 
 extension CategoriesViewController: CategoriesDisplayLogic {
-    func displayData(viewModel: Categories.Model.ViewModel.ViewModelData) {
+    func displayData(viewModel: CategoriesModel.ViewModel.ViewModelData) {
         switch viewModel {
-        case .displayCategories(let categoriesViewModel):
+        case .displayNetworkResponse(categories: let categoriesViewModel):
+            self.categoriesViewModel = categoriesViewModel
+            reloadData()
+        case .displayDatabaseResponse(categories: let categoriesViewModel):
             self.categoriesViewModel = categoriesViewModel
             reloadData()
         }
@@ -107,8 +109,8 @@ extension CategoriesViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoriesCell.identifier, for: indexPath) as? CategoriesCell {
-            let cellViewModel = categoriesViewModel?[indexPath.row]
-            cell.set(viewModel: cellViewModel!)
+            guard let cellViewModel = categoriesViewModel?[indexPath.row] else { return cell }
+            cell.set(viewModel: cellViewModel)
             return cell
         }
         return UICollectionViewCell()
@@ -139,7 +141,7 @@ extension CategoriesViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let categoryVC = CharityEventAssembly().configuredModule()
-        navigationController?.pushViewController(categoryVC, animated: true)
+        
+        navigationController?.pushViewController(SceneAssemblyService().buildCharityEventModule(), animated: true)
     }
 }

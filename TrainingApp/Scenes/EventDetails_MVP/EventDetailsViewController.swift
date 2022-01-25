@@ -8,7 +8,7 @@
 import UIKit
 
 protocol EventDetailsViewProtocol: AnyObject {
-    func setuphData(data: [EventModel])
+    func setupData(data: [EventModel])
     func showErrorAlert()
 }
 
@@ -58,7 +58,7 @@ final class EventDetailsViewController: UIViewController {
 
 extension EventDetailsViewController: EventDetailsViewProtocol {
     
-    func setuphData(data: [EventModel]) {
+    func setupData(data: [EventModel]) {
         title = data[eventId ?? 1].eventName
         titleNameLabel.text = data[eventId ?? 1].eventName
         timeLeftLabel.text = data[eventId ?? 1].timeLeft

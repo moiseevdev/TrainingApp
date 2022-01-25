@@ -18,5 +18,5 @@ protocol Networkable {
 final class NetworkService {
     
     // Choice of network layer: URLSession, Alamofire or Moya
-    static var network: Networkable = URLSessionService()
+    static var network: Networkable = MoyaService()
 }

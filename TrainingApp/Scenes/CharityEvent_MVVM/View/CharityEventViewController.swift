@@ -60,9 +60,9 @@ private extension CharityEventViewController {
     }
     
     func reloadCollectionViewData() {
-        viewModel?.reloadCollectionViewData = {
-            self.collectionView.reloadData()
-            self.hideActivityIndicator()
+        viewModel?.reloadCollectionViewData = { [weak self] in
+            self?.collectionView.reloadData()
+            self?.hideActivityIndicator()
         }
     }
     
@@ -121,9 +121,8 @@ extension CharityEventViewController: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
             let cellViewModel = viewModel.cellViewModel(forIndexPath: indexPath)
-            let collectionViewCell = cell
-            collectionViewCell.viewModel = cellViewModel
-            return collectionViewCell
+            cell.viewModel = cellViewModel
+            return cell
         }
         return UICollectionViewCell()
     }
@@ -153,7 +152,7 @@ extension CharityEventViewController: UICollectionViewDelegateFlowLayout {
         guard let eventId = event.eventId else {
             return
         }
-        let eventDetailsViewController = EventDetailsAssembly().configuredModule()
+        let eventDetailsViewController = SceneAssemblyService().buildEventDetailsModule()
         navigationController?.pushViewController(eventDetailsViewController, animated: true)
     }
     

@@ -59,13 +59,11 @@
 		E9C65B65278C8A9D0044E27A /* CharityEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C65B64278C8A9D0044E27A /* CharityEventViewModel.swift */; };
 		E9C65B67278D0FD50044E27A /* EventDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C65B66278D0FD50044E27A /* EventDetailsPresenter.swift */; };
 		E9C65B6B278DF7520044E27A /* CharityEventCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C65B6A278DF7520044E27A /* CharityEventCellViewModel.swift */; };
-		E9C65B6D278E3E0E0044E27A /* CharityEventAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C65B6C278E3E0E0044E27A /* CharityEventAssembly.swift */; };
-		E9C65B93278F01EA0044E27A /* EventDetailsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C65B92278F01EA0044E27A /* EventDetailsAssembly.swift */; };
 		E9C65B95278F82240044E27A /* CategoriesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C65B94278F82230044E27A /* CategoriesInteractor.swift */; };
 		E9C65B97278F82460044E27A /* CategoriesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C65B96278F82460044E27A /* CategoriesPresenter.swift */; };
 		E9C65B99278F82710044E27A /* CategoriesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C65B98278F82710044E27A /* CategoriesRouter.swift */; };
-		E9C65B9B27901FFC0044E27A /* CategoriesAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C65B9A27901FFC0044E27A /* CategoriesAssembly.swift */; };
 		E9C65BAC2790F0D90044E27A /* CategoriesModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C65BAB2790F0D90044E27A /* CategoriesModels.swift */; };
+		E9C65BC227960D690044E27A /* SceneAssemblyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C65BC127960D670044E27A /* SceneAssemblyService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -125,13 +123,11 @@
 		E9C65B64278C8A9D0044E27A /* CharityEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharityEventViewModel.swift; sourceTree = "<group>"; };
 		E9C65B66278D0FD50044E27A /* EventDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsPresenter.swift; sourceTree = "<group>"; };
 		E9C65B6A278DF7520044E27A /* CharityEventCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharityEventCellViewModel.swift; sourceTree = "<group>"; };
-		E9C65B6C278E3E0E0044E27A /* CharityEventAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharityEventAssembly.swift; sourceTree = "<group>"; };
-		E9C65B92278F01EA0044E27A /* EventDetailsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsAssembly.swift; sourceTree = "<group>"; };
 		E9C65B94278F82230044E27A /* CategoriesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesInteractor.swift; sourceTree = "<group>"; };
 		E9C65B96278F82460044E27A /* CategoriesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesPresenter.swift; sourceTree = "<group>"; };
 		E9C65B98278F82710044E27A /* CategoriesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesRouter.swift; sourceTree = "<group>"; };
-		E9C65B9A27901FFC0044E27A /* CategoriesAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesAssembly.swift; sourceTree = "<group>"; };
 		E9C65BAB2790F0D90044E27A /* CategoriesModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesModels.swift; sourceTree = "<group>"; };
+		E9C65BC127960D670044E27A /* SceneAssemblyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneAssemblyService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -280,7 +276,7 @@
 			isa = PBXGroup;
 			children = (
 				E9BB3738276B543A001CA59A /* TabBar */,
-				E9BB373D276B547D001CA59A /* Categories */,
+				E9BB373D276B547D001CA59A /* Categories_CleanArchitecture */,
 				E9BB376D276B6E64001CA59A /* CharityEvent_MVVM */,
 				E9BB3772276B6E7B001CA59A /* EventDetails_MVP */,
 				E9BB3742276B5505001CA59A /* TestViewController */,
@@ -310,7 +306,7 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
-		E9BB373D276B547D001CA59A /* Categories */ = {
+		E9BB373D276B547D001CA59A /* Categories_CleanArchitecture */ = {
 			isa = PBXGroup;
 			children = (
 				E9BB373E276B54A0001CA59A /* CategoriesViewController.swift */,
@@ -319,9 +315,8 @@
 				E9C65B96278F82460044E27A /* CategoriesPresenter.swift */,
 				E9C65BAB2790F0D90044E27A /* CategoriesModels.swift */,
 				E9C65B98278F82710044E27A /* CategoriesRouter.swift */,
-				E9C65B9A27901FFC0044E27A /* CategoriesAssembly.swift */,
 			);
-			path = Categories;
+			path = Categories_CleanArchitecture;
 			sourceTree = "<group>";
 		};
 		E9BB3742276B5505001CA59A /* TestViewController */ = {
@@ -421,6 +416,7 @@
 				E9AA6206277A5C87000ECF76 /* DataFromFileServices */,
 				E9AA6207277A5CEF000ECF76 /* NetworkServices */,
 				E9BB378B276B7295001CA59A /* DataBaseServices */,
+				E9C65BC127960D670044E27A /* SceneAssemblyService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -430,7 +426,6 @@
 			children = (
 				E9C65B60278C87A80044E27A /* View */,
 				E9C65B61278C87AD0044E27A /* ViewModel */,
-				E9C65B6C278E3E0E0044E27A /* CharityEventAssembly.swift */,
 			);
 			path = CharityEvent_MVVM;
 			sourceTree = "<group>";
@@ -441,7 +436,6 @@
 				E9BB3773276B6EA0001CA59A /* EventDetailsViewController.swift */,
 				E9BB3774276B6EA0001CA59A /* EventDetailsViewController.xib */,
 				E9C65B66278D0FD50044E27A /* EventDetailsPresenter.swift */,
-				E9C65B92278F01EA0044E27A /* EventDetailsAssembly.swift */,
 			);
 			path = EventDetails_MVP;
 			sourceTree = "<group>";
@@ -652,13 +646,11 @@
 				E9BB374A276B557A001CA59A /* CustomFonts.swift in Sources */,
 				E9AF61F7276E3C9D00C68A28 /* URLSessionService.swift in Sources */,
 				E9AF620C2775DA1200C68A28 /* NetworkService.swift in Sources */,
-				E9C65B6D278E3E0E0044E27A /* CharityEventAssembly.swift in Sources */,
 				E9C65B95278F82240044E27A /* CategoriesInteractor.swift in Sources */,
-				E9C65B93278F01EA0044E27A /* EventDetailsAssembly.swift in Sources */,
 				E9BB377B276B70AF001CA59A /* TrainingApp.xcdatamodeld in Sources */,
-				E9C65B9B27901FFC0044E27A /* CategoriesAssembly.swift in Sources */,
 				E9C65B99278F82710044E27A /* CategoriesRouter.swift in Sources */,
 				E9AF62042774ACCB00C68A28 /* EventModel.swift in Sources */,
+				E9C65BC227960D690044E27A /* SceneAssemblyService.swift in Sources */,
 				E9BB3782276B70CA001CA59A /* CDCategories+CoreDataClass.swift in Sources */,
 				E9BB3770276B6E76001CA59A /* CharityEventViewController.swift in Sources */,
 				E9BB3786276B70FC001CA59A /* CoreDataService.swift in Sources */,
