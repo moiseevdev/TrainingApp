@@ -56,6 +56,14 @@
 		E9BB3795276B7314001CA59A /* CharityEventViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BB3793276B7314001CA59A /* CharityEventViewCell.swift */; };
 		E9BB3796276B7314001CA59A /* CharityEventViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9BB3794276B7314001CA59A /* CharityEventViewCell.xib */; };
 		E9BB3799276B7837001CA59A /* NSManagedObjectExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BB3798276B7837001CA59A /* NSManagedObjectExtensions.swift */; };
+		E9C65B65278C8A9D0044E27A /* CharityEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C65B64278C8A9D0044E27A /* CharityEventViewModel.swift */; };
+		E9C65B67278D0FD50044E27A /* EventDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C65B66278D0FD50044E27A /* EventDetailsPresenter.swift */; };
+		E9C65B6B278DF7520044E27A /* CharityEventCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C65B6A278DF7520044E27A /* CharityEventCellViewModel.swift */; };
+		E9C65B95278F82240044E27A /* CategoriesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C65B94278F82230044E27A /* CategoriesInteractor.swift */; };
+		E9C65B97278F82460044E27A /* CategoriesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C65B96278F82460044E27A /* CategoriesPresenter.swift */; };
+		E9C65B99278F82710044E27A /* CategoriesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C65B98278F82710044E27A /* CategoriesRouter.swift */; };
+		E9C65BAC2790F0D90044E27A /* CategoriesModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C65BAB2790F0D90044E27A /* CategoriesModels.swift */; };
+		E9C65BC227960D690044E27A /* SceneAssemblyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C65BC127960D670044E27A /* SceneAssemblyService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -112,6 +120,14 @@
 		E9BB3793276B7314001CA59A /* CharityEventViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharityEventViewCell.swift; sourceTree = "<group>"; };
 		E9BB3794276B7314001CA59A /* CharityEventViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CharityEventViewCell.xib; sourceTree = "<group>"; };
 		E9BB3798276B7837001CA59A /* NSManagedObjectExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSManagedObjectExtensions.swift; sourceTree = "<group>"; };
+		E9C65B64278C8A9D0044E27A /* CharityEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharityEventViewModel.swift; sourceTree = "<group>"; };
+		E9C65B66278D0FD50044E27A /* EventDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsPresenter.swift; sourceTree = "<group>"; };
+		E9C65B6A278DF7520044E27A /* CharityEventCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharityEventCellViewModel.swift; sourceTree = "<group>"; };
+		E9C65B94278F82230044E27A /* CategoriesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesInteractor.swift; sourceTree = "<group>"; };
+		E9C65B96278F82460044E27A /* CategoriesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesPresenter.swift; sourceTree = "<group>"; };
+		E9C65B98278F82710044E27A /* CategoriesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesRouter.swift; sourceTree = "<group>"; };
+		E9C65BAB2790F0D90044E27A /* CategoriesModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesModels.swift; sourceTree = "<group>"; };
+		E9C65BC127960D670044E27A /* SceneAssemblyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneAssemblyService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -260,9 +276,9 @@
 			isa = PBXGroup;
 			children = (
 				E9BB3738276B543A001CA59A /* TabBar */,
-				E9BB373D276B547D001CA59A /* Categories */,
-				E9BB376D276B6E64001CA59A /* CharityEvent */,
-				E9BB3772276B6E7B001CA59A /* EventDetails */,
+				E9BB373D276B547D001CA59A /* Categories_CleanArchitecture */,
+				E9BB376D276B6E64001CA59A /* CharityEvent_MVVM */,
+				E9BB3772276B6E7B001CA59A /* EventDetails_MVP */,
 				E9BB3742276B5505001CA59A /* TestViewController */,
 			);
 			path = Scenes;
@@ -290,13 +306,17 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
-		E9BB373D276B547D001CA59A /* Categories */ = {
+		E9BB373D276B547D001CA59A /* Categories_CleanArchitecture */ = {
 			isa = PBXGroup;
 			children = (
 				E9BB373E276B54A0001CA59A /* CategoriesViewController.swift */,
 				E9BB373F276B54A0001CA59A /* CategoriesViewController.xib */,
+				E9C65B94278F82230044E27A /* CategoriesInteractor.swift */,
+				E9C65B96278F82460044E27A /* CategoriesPresenter.swift */,
+				E9C65BAB2790F0D90044E27A /* CategoriesModels.swift */,
+				E9C65B98278F82710044E27A /* CategoriesRouter.swift */,
 			);
-			path = Categories;
+			path = Categories_CleanArchitecture;
 			sourceTree = "<group>";
 		};
 		E9BB3742276B5505001CA59A /* TestViewController */ = {
@@ -396,26 +416,28 @@
 				E9AA6206277A5C87000ECF76 /* DataFromFileServices */,
 				E9AA6207277A5CEF000ECF76 /* NetworkServices */,
 				E9BB378B276B7295001CA59A /* DataBaseServices */,
+				E9C65BC127960D670044E27A /* SceneAssemblyService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
 		};
-		E9BB376D276B6E64001CA59A /* CharityEvent */ = {
+		E9BB376D276B6E64001CA59A /* CharityEvent_MVVM */ = {
 			isa = PBXGroup;
 			children = (
-				E9BB376E276B6E75001CA59A /* CharityEventViewController.swift */,
-				E9BB376F276B6E76001CA59A /* CharityEventViewController.xib */,
+				E9C65B60278C87A80044E27A /* View */,
+				E9C65B61278C87AD0044E27A /* ViewModel */,
 			);
-			path = CharityEvent;
+			path = CharityEvent_MVVM;
 			sourceTree = "<group>";
 		};
-		E9BB3772276B6E7B001CA59A /* EventDetails */ = {
+		E9BB3772276B6E7B001CA59A /* EventDetails_MVP */ = {
 			isa = PBXGroup;
 			children = (
 				E9BB3773276B6EA0001CA59A /* EventDetailsViewController.swift */,
 				E9BB3774276B6EA0001CA59A /* EventDetailsViewController.xib */,
+				E9C65B66278D0FD50044E27A /* EventDetailsPresenter.swift */,
 			);
-			path = EventDetails;
+			path = EventDetails_MVP;
 			sourceTree = "<group>";
 		};
 		E9BB377C276B70BD001CA59A /* CoreDataModels */ = {
@@ -455,6 +477,24 @@
 				E9AF61FA27722BE000C68A28 /* UIImageViewExtension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		E9C65B60278C87A80044E27A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E9BB376E276B6E75001CA59A /* CharityEventViewController.swift */,
+				E9BB376F276B6E76001CA59A /* CharityEventViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E9C65B61278C87AD0044E27A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E9C65B64278C8A9D0044E27A /* CharityEventViewModel.swift */,
+				E9C65B6A278DF7520044E27A /* CharityEventCellViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -586,12 +626,14 @@
 				E9BB376C276B6D99001CA59A /* ReadJSONFromFile.swift in Sources */,
 				E9BB3775276B6EA0001CA59A /* EventDetailsViewController.swift in Sources */,
 				E9BB3788276B71F6001CA59A /* RealmService.swift in Sources */,
+				E9C65B97278F82460044E27A /* CategoriesPresenter.swift in Sources */,
 				E9BB3799276B7837001CA59A /* NSManagedObjectExtensions.swift in Sources */,
 				E9AF62022774ACB500C68A28 /* CategoryModel.swift in Sources */,
 				E9BB374F276B5598001CA59A /* CustomColors.swift in Sources */,
 				E9BB373B276B5451001CA59A /* TabBarController.swift in Sources */,
 				E9AF620A27753B0000C68A28 /* AlamofireService.swift in Sources */,
 				E9BB3790276B72A2001CA59A /* DataBaseAdapter.swift in Sources */,
+				E9C65BAC2790F0D90044E27A /* CategoriesModels.swift in Sources */,
 				E9BB3757276B5697001CA59A /* CategoriesCell.swift in Sources */,
 				E9BB3784276B70CA001CA59A /* CDCategories+CoreDataProperties.swift in Sources */,
 				E9BB371D276B3AD1001CA59A /* AppDelegate.swift in Sources */,
@@ -604,13 +646,19 @@
 				E9BB374A276B557A001CA59A /* CustomFonts.swift in Sources */,
 				E9AF61F7276E3C9D00C68A28 /* URLSessionService.swift in Sources */,
 				E9AF620C2775DA1200C68A28 /* NetworkService.swift in Sources */,
+				E9C65B95278F82240044E27A /* CategoriesInteractor.swift in Sources */,
 				E9BB377B276B70AF001CA59A /* TrainingApp.xcdatamodeld in Sources */,
+				E9C65B99278F82710044E27A /* CategoriesRouter.swift in Sources */,
 				E9AF62042774ACCB00C68A28 /* EventModel.swift in Sources */,
+				E9C65BC227960D690044E27A /* SceneAssemblyService.swift in Sources */,
 				E9BB3782276B70CA001CA59A /* CDCategories+CoreDataClass.swift in Sources */,
 				E9BB3770276B6E76001CA59A /* CharityEventViewController.swift in Sources */,
 				E9BB3786276B70FC001CA59A /* CoreDataService.swift in Sources */,
+				E9C65B6B278DF7520044E27A /* CharityEventCellViewModel.swift in Sources */,
+				E9C65B67278D0FD50044E27A /* EventDetailsPresenter.swift in Sources */,
 				E9269C27276CB0A200D3CCDD /* Strings.swift in Sources */,
 				E9BB3740276B54A0001CA59A /* CategoriesViewController.swift in Sources */,
+				E9C65B65278C8A9D0044E27A /* CharityEventViewModel.swift in Sources */,
 				E9BB3795276B7314001CA59A /* CharityEventViewCell.swift in Sources */,
 				E9BB378F276B72A2001CA59A /* CoreDataAdapter.swift in Sources */,
 				E9BB3781276B70CA001CA59A /* CDEvents+CoreDataProperties.swift in Sources */,

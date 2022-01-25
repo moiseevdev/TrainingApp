@@ -7,17 +7,16 @@
 
 import UIKit
 
+protocol CategoriesDisplayLogic: AnyObject {
+    func displayData(viewModel: CategoriesModel.ViewModel.ViewModelData)
+}
+
 final class CategoriesViewController: UIViewController {
     
-    private var networkService = NetworkService.network
-    private var dataBase = DataBaseAdapter.dataBase
-
-    var categories: [CategoryModel] = [] {
-        didSet {
-            self.categoriesCollectionView.reloadData()
-            self.hideActivityIndicator()
-        }
-    }
+    var interactor: CategoriesBusinessLogic?
+    var router: (NSObjectProtocol & CategoriesRoutingLogic)?
+    
+    private var categoriesViewModel: [CategoryModel]?
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var categoriesCollectionView: UICollectionView!
@@ -40,32 +39,36 @@ final class CategoriesViewController: UIViewController {
         setupNavigitionBar()
         setupCollectionView()
         showActivityIndicator()
-        fethCategories()
+        interactor?.makeRequest(request: .getCategories)
+    }
+}
+
+extension CategoriesViewController: CategoriesDisplayLogic {
+    func displayData(viewModel: CategoriesModel.ViewModel.ViewModelData) {
+        switch viewModel {
+        case .displayNetworkResponse(categories: let categoriesViewModel):
+            self.categoriesViewModel = categoriesViewModel
+            reloadData()
+        case .displayDatabaseResponse(categories: let categoriesViewModel):
+            self.categoriesViewModel = categoriesViewModel
+            reloadData()
+        }
+    }
+    
+    func reloadData() {
+        self.categoriesCollectionView.reloadData()
+        self.hideActivityIndicator()
+    }
+    
+    func showErrorAlert() {
+        let alert = UIAlertController(title: "Error", message: "Failed to get data", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 }
 
 // MARK: - Private methods
 private extension CategoriesViewController {
-    
-    func fethCategories() {
-        networkService.fethCategories { [weak self] result in
-            switch result {
-            case .success(let networkResponse):
-                self?.categories = networkResponse.map({ CategoryModel(categoryId: Int($0.categoryId),
-                                                                      categoryName: $0.categoryName,
-                                                                      image: $0.image) })
-            case .failure:
-                self?.dataBase.getCategories { result in
-                    switch result {
-                    case .success(let coredataResponse):
-                        self?.categories = coredataResponse
-                    case .failure:
-                        self?.showErrorAlert()
-                    }
-                }
-            }
-        }
-    }
     
     func showActivityIndicator() {
         categoriesCollectionView.isHidden = true
@@ -95,27 +98,19 @@ private extension CategoriesViewController {
         categoriesCollectionView.dataSource = self
         categoriesCollectionView.delegate = self
     }
-    
-    func showErrorAlert() {
-        let alert = UIAlertController(title: "Error", message: "Failed to get data", preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-    }
 }
 
 // MARK: - UICollectionViewDataSource
 extension CategoriesViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return categories.count
+        return categoriesViewModel?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoriesCell", for: indexPath) as? CategoriesCell {
-            let categories = categories[indexPath.item]
-            cell.nameLabel.text = categories.categoryName
-            cell.categoryImage.setImage(imageUrl: categories.image ?? "test")
-            cell.backgroundColor = CustomColors.lightGrey2
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoriesCell.identifier, for: indexPath) as? CategoriesCell {
+            guard let cellViewModel = categoriesViewModel?[indexPath.row] else { return cell }
+            cell.set(viewModel: cellViewModel)
             return cell
         }
         return UICollectionViewCell()
@@ -146,12 +141,7 @@ extension CategoriesViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let category = categories[indexPath.item]
-        guard let categoryId = category.categoryId else {
-            return
-        }
-        let categoryVC = CharityEventViewController()
-        categoryVC.categoryId = categoryId
-        navigationController?.pushViewController(categoryVC, animated: true)
+        
+        navigationController?.pushViewController(SceneAssemblyService().buildCharityEventModule(), animated: true)
     }
 }
